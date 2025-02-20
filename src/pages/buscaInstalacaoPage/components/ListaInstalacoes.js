@@ -5,44 +5,53 @@ import {
     CardContent,
     FormControl,
     FormControlLabel,
-    FormLabel,
     Radio,
     RadioGroup,
     Typography
 } from "@mui/material";
 
-const ListaInstalacoes = ({instalacoes}) => {
-
+const ListaInstalacoes = ({ instalacoes, selectedInstalacao, onSelectInstalacao }) => {
     const contemInstalacoes = instalacoes?.length > 0;
 
-    return(
+    return (
         <>
-            {contemInstalacoes &&
+            {contemInstalacoes && (
                 <Box mb={1}>
-                <span>Selecione a instalacão</span>
+                    <span>Selecione a instalação</span>
                 </Box>
-            }
+            )}
 
             <Box className="falta-energia-container">
-                {!contemInstalacoes ? (
+                {contemInstalacoes ? (
                     <Box>
                         <FormControl>
                             <RadioGroup
                                 aria-labelledby="demo-radio-buttons-group-label"
-                                defaultValue="female"
-                                name="radio-buttons-group"
+                                value={selectedInstalacao ? selectedInstalacao.codigo : ''} // Usando selectedInstalacao da prop
+                                onChange={(e) => 
+                                    onSelectInstalacao(instalacoes.find(inst => inst.codigo === e.target.value)) // Apenas altera o estado
+                                }
                             >
                                 {instalacoes.map((instalacao) => (
                                     <Box display="flex" alignItems="center" mb={2} key={instalacao.codigo}>
                                         <FormControlLabel
                                             value={instalacao.codigo}
-                                            control={<Radio/>}
-                                            label={instalacao.nome}
-                                            sx={{ marginRight: 2 }}
+                                            control={<Radio />}
+                                            sx={{ marginRight: 2, marginBottom: 10,}}
                                         />
-                                        <Card variant="outlined" sx={{ width: 150 }}>
-                                            <CardContent>
-                                                <Typography variant="body2">{instalacao.nome} Card</Typography>
+                                        <Card variant="outlined" className="falta-energia-card">
+                                            <CardContent sx={{ bgcolor: "var(--light-gray-bg)", width: 800 }}>
+                                                <Typography variant="body2">
+                                                    <Box fontWeight="bold">Nº da Instalação: {instalacao.codigo}</Box>
+                                                    <Box fontWeight="bold">{instalacao.endereco}</Box>
+                                                    <Box fontWeight="bold">Complemento:{instalacao.complemento}</Box>
+                                                    <Box fontWeight="bold">CEP:{instalacao.cep}</Box>
+                                                    <Box
+                                                        className={`status ${instalacao.status === "Ativa" ? "ativa" : "desativada"}`}
+                                                    >
+                                                        {instalacao.status}
+                                                    </Box>
+                                                </Typography>
                                             </CardContent>
                                         </Card>
                                     </Box>
@@ -50,14 +59,12 @@ const ListaInstalacoes = ({instalacoes}) => {
                             </RadioGroup>
                         </FormControl>
                     </Box>
-                ):(
-                    <Box>
-                        Não foi localizada nenhuma instalação.
-                    </Box>
+                ) : (
+                    <Box>Não foi localizada nenhuma instalação.</Box>
                 )}
             </Box>
         </>
     );
-}
+};
 
 export default ListaInstalacoes;

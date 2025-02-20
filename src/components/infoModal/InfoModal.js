@@ -16,9 +16,6 @@ const InfoModal = ({ open, onClose, title, content }) => {
             <DialogContent>
                 {content}
             </DialogContent>
-            <DialogActions sx={{ m: 1, display: "flex", justifyContent: "center" }}>
-                <CustomButton onClick={onClose} label="Ok, entendi" />
-            </DialogActions>
         </Dialog>
     );
 };

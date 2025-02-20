@@ -166,3 +166,42 @@
 .falta-energia-container .sms-info .text-send-sms-blue {
     color: var(--light-blue);
 }
+
+.falta-energia-card {
+    width: 100%;
+}
+
+.falta-energia-card .status {
+    position: absolute;
+    top: 20px;
+    right: 12px;
+    padding: 8px 20px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.falta-energia-card .status.ativa {
+    background: #3dc47e;
+}
+
+.falta-energia-card .status.desativada {
+    background: #e74c3c;
+}
+
+.danger-text {
+    color: #e74c3c;
+}
+
+.falta-energia-container-relatar {
+    
+    max-height: 100%;
+    width: 940px;
+    border: 1px solid var(--border-color);
+    padding: var(--s20);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--s20);
+    box-sizing: border-box;
+}
+

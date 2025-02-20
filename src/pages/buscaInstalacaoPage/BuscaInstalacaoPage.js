@@ -10,17 +10,37 @@ import PesquisaInstalacaoByEndereco from "./components/PesquisaInstalacaoByEnder
 import PesquisaInstalacaoByCodInstalacao from "./components/PesquisaInstalacaoByCodInstalacao";
 import PesquisaInstalacaoByNrMedidor from "./components/PesquisaInstalacaoByNrMedidor";
 import ListaInstalacoes from "./components/ListaInstalacoes";
+import InfoModal from "../../components/infoModal/InfoModal";
+import { Typography } from "@mui/material";
+import { useInstalacao } from "../../context/InstalacaoContext"; 
+
+
 
 function BuscaInstalacaoPage({steps, currentStep, nextStep, prevStep}) {
 
+    const { instalacaoSelecionada, setInstalacaoSelecionada } = useInstalacao(); 
+    const [openModal, setOpenModal] = useState(false);
     const [instalacoes, setInstalacoes] = useState([]);
-
     const [radioValue, setRadioValue] = useState('instalacao');
-
+    
+ 
     const handleChangeRadio = (event) => {
         setRadioValue(event.target.value);
     };
 
+    const mockInstalacoes = [
+        { 
+            codigo: "001", 
+            nome: "Instalação 001", 
+            status: "Ativa", 
+            cep: "12345-678", 
+            endereco: "Rua Antônio Prado, 123, Centro", 
+            complemento: "Apartamento 101", 
+            cidade: "Araraquara", 
+            estado: "SP"
+        },
+        // Pode adicionar mais instalações mockadas aqui
+    ];
     const renderContent = (value) => {
         switch (value) {
             case 'instalacao':
@@ -32,6 +52,16 @@ function BuscaInstalacaoPage({steps, currentStep, nextStep, prevStep}) {
             default:
                 return null;
         }
+    };
+
+    const handleAvancar = () => {
+        if (instalacaoSelecionada) {
+            setOpenModal(true);
+        }
+    };
+
+    const handleCloseModal = () => {
+        setOpenModal(false);
     };
 
     return (
@@ -72,22 +102,51 @@ function BuscaInstalacaoPage({steps, currentStep, nextStep, prevStep}) {
                 </Grid>
             </Box>
 
-            <ListaInstalacoes instalacoes={instalacoes}/>
+            <ListaInstalacoes 
+                instalacoes={mockInstalacoes}
+                selectedInstalacao={instalacaoSelecionada} // Use o contexto aqui
+                onSelectInstalacao={setInstalacaoSelecionada}  
+            />
 
-            <Box className="footer-form">
+             <Box className="footer-form">
                 <CustomButton
                     label="Voltar"
-                    startIcon={<KeyboardBackspaceIcon/>}
+                    startIcon={<KeyboardBackspaceIcon />}
                     onClick={prevStep}
                 />
-                <CustomButton
-                    label="Avançar"
-                    endIcon={<EastIcon/>}
-                    onClick={nextStep}
-                />
+
+            <CustomButton label="Avançar"  disabled={!instalacaoSelecionada} endIcon={<EastIcon />} onClick={handleAvancar} />
             </Box>
+
+            {instalacaoSelecionada && (
+                <InfoModal 
+                    open={openModal}
+                    onClose={handleCloseModal}
+                    content={
+                        <Box width={730} height={325}>
+                            <Typography fontWeight="bold" variant="h6">O relato de falta de energia será no endereço informado abaixo:
+                            </Typography>
+                            <Typography sx={{ mt: 2, fontSize: '0.875rem' }}>
+                                <strong >CEP:</strong> {instalacaoSelecionada.cep} <br />
+                                <strong>Endereço:</strong> {instalacaoSelecionada.endereco} <br />
+                                <strong>Complemento:</strong> {instalacaoSelecionada.complemento} <br />
+                                <strong>Cidade:</strong> {instalacaoSelecionada.cidade} - {instalacaoSelecionada.estado}
+                            </Typography>
+                            <Typography sx={{ mt: 2,fontSize: '0.875rem'  }}>
+                                <b className="danger-text">ATENÇÃO:</b> Confirme se o endereço está correto para que nossa equipe tenha maior precisão ao se deslocar para o local informado.
+                            </Typography>
+                            <Box sx={{ mt: 9, display: "flex", justifyContent: "space-evenly" }}>
+                                <CustomButton  label="Revisar Endereço" onClick={handleCloseModal} variant="outlined" />
+                                <CustomButton label="Confirmar Endereço" onClick={() => { nextStep(); handleCloseModal(); }} />
+                            </Box>
+                        </Box>
+                    }
+                />
+            )}
         </Box>
     );
+
+    
 }
 
 export default BuscaInstalacaoPage;
