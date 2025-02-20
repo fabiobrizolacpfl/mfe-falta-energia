@@ -1,13 +1,149 @@
+:root {
+  --font-base: 15;
+  --half: calc(var(--font-base) / 2 * 1px);
+  --column-gap: var(--s45);
+  --mccenter-pd-top: var(--s20);
+  --mccenter-pd-left: calc((160 / var(--font-base) * 1rem));
+  --wsidebar: calc((287 / var(--font-base) * 1rem));
+  --wwrapper-small: calc((643 / var(--font-base) * 1rem));
+  --wwrapper-medium: calc((750 / var(--font-base) * 1rem));
+  --wwrapper-large: calc((917 / var(--font-base) * 1rem));
+  --winstalacoes: calc((390 / var(--font-base) * 1rem));
+  --wmain-content: calc((920 / var(--font-base) * 1rem));
+  --border-radius: var(--s10);
+  --s2: calc((2 / var(--font-base) * 1rem));
+  --s3: calc((3 / var(--font-base) * 1rem));
+  --s4: calc((4 / var(--font-base) * 1rem));
+  --s5: calc((5 / var(--font-base) * 1rem));
+  --s6: calc((6 / var(--font-base) * 1rem));
+  --s7: calc((7 / var(--font-base) * 1rem));
+  --s8: calc((8 / var(--font-base) * 1rem));
+  --s9: calc((9 / var(--font-base) * 1rem));
+  --s10: calc((10 / var(--font-base) * 1rem));
+  --s11: calc((11 / var(--font-base) * 1rem));
+  --s12: calc((12 / var(--font-base) * 1rem));
+  --s13: calc((13 / var(--font-base) * 1rem));
+  --s14: calc((14 / var(--font-base) * 1rem));
+  --s15: calc((15 / var(--font-base) * 1rem));
+  --s16: calc((16 / var(--font-base) * 1rem));
+  --s17: calc((17 / var(--font-base) * 1rem));
+  --s18: calc((18 / var(--font-base) * 1rem));
+  --s19: calc((19 / var(--font-base) * 1rem));
+  --s20: calc((20 / var(--font-base) * 1rem));
+  --s21: calc((21 / var(--font-base) * 1rem));
+  --s22: calc((22 / var(--font-base) * 1rem));
+  --s23: calc((23 / var(--font-base) * 1rem));
+  --s24: calc((24 / var(--font-base) * 1rem));
+  --s25: calc((25 / var(--font-base) * 1rem));
+  --s30: calc((30 / var(--font-base) * 1rem));
+  --s35: calc((35 / var(--font-base) * 1rem));
+  --s38: calc((38 / var(--font-base) * 1rem));
+  --s40: calc((40 / var(--font-base) * 1rem));
+  --s42: calc((42 / var(--font-base) * 1rem));
+  --s45: calc((45 / var(--font-base) * 1rem));
+  --s48: calc((48 / var(--font-base) * 1rem));
+  --s60: calc((60 / var(--font-base) * 1rem));
+  --s65: calc((65 / var(--font-base) * 1rem));
+  --s70: calc((70 / var(--font-base) * 1rem));
+  --s75: calc((75 / var(--font-base) * 1rem));
+  /*            cores           */
+  --white: #ffffff;
+  --green: #639636;
+  --blue: #003b6b;
+  --orange: #b37700;
+  --red: #7a1f24;
+  --light-green: #80c342;
+  --light-blue: #0058a0;
+  --light-orange: #f4af25;
+  --light-red: #f0575d;
+  --lightest-blue: #18ace0;
+  --text-secondary: #93979a;
+  --title: #2d2d2d;
+  --description: #929699;
+  --stepper-wrapper-bg: #f5f5f7;
+  --border-color: #dfe0e1;
+  --border-radio-btn: #b7b7b7;
+  --btn-primary-bg: var(--light-blue);
+  --btn-primary-bg-hv: var(--blue);
+  --btn-back: var(--text-secondary);
+  --btn-back-hv: #0099cc;
+  --instalacoes-bg: #fafafa;
+  --cor-destaque-bg: #fff9f4;
+  --input-bg: var(--white);
+  --input-bg-disabled: #eeeeef;
+  --input-disabled: #b2b4b7;
+  --input-disabled-text: #b2b4b7;
+  --input-bd-fc: #a2d2fc;
+  --input-icon: #cccccc;
+  --input-arrow: #93969a;
+  --highlight: #00ade1;
+  --positive: var(--white);
+  --positive-bg: #2ea55d;
+  --negative: var(--white);
+  --negative-bg: var(--light-red);
+  --administrativo: var(--light-blue);
+  --residencial: var(--highlight);
+  --empresarial: var(--light-green);
+  --imobiliaria: #f68b1f;
+  --poder_publico: #f15e38;
+  --projetos_particulares: #01704e;
+  --agree-bg: #83b81a;
+  --texto-cinza: #bfc1c3;
+  --light-gray-bg: #f5f5f7;
+  --header-steps: #e2e2e2;
+  --falta-energia-orange: #f68b1f;
+  --protocolo-box-text-color: #778ca2;
+  --protocolo-alert-box-bg: #fbae42;
+  --tooltip-trigger-bg: #00447c;
+}
+
+
+html {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--white);
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: Lato, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.separator-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 16px 0;
 }
+
+.separator-container hr {
+  flex-grow: 1;
+  border: 1px solid #bec0c2;
+}
+
+.separator-container span {
+  margin: 0 8px;
+  font-weight: bold;
+  color: #bec0c2;
+}
+
+.custom-field {
+  height: 60px;
+}
+
+.custom-field .MuiInputBase-root {
+  height: 40px;
+}
+
+.custom-field .MuiInputBase-root.Mui-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: var(--input-bg-disabled);
+}
+
+

@@ -1,0 +1,168 @@
+.falta-energia-container {
+    max-width: 100%;
+    max-height: 100%;
+    width: var(--wmain-content);
+    border: 1px solid var(--border-color);
+    padding: var(--s20);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--s20);
+    box-sizing: border-box;
+}
+
+.falta-energia-container a{
+    color: rgb(0, 173, 225);
+    text-decoration: underline;
+    font-size: var(--s13);
+    cursor: pointer;
+}
+
+.falta-energia-container .header-title {
+    font-size: var(--font-base);
+    color: var(--title);
+    font-weight: bold;
+    border-bottom: 1px solid var(--border-color);
+    padding: 0 var(--s20) var(--s20);
+    margin: 0 calc(var(--s20)* -1) var(--s20);
+    position: relative;
+}
+
+.falta-energia-container .header-steps {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: var(--s10);
+    background-color: var(--light-gray-bg);
+    padding: var(--s5) var(--s8);
+    margin-bottom: var(--s30);
+}
+
+.falta-energia-container .header-steps .title {
+    color: var(--light-blue);
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.falta-energia-container .header-steps .sub-title {
+    font-weight: 400;
+    font-size: 10px;
+    color: #98a9bc;
+    display: inline-block;
+    padding-left: var(--s10);
+}
+
+.falta-energia-container .header-steps .icon-bolt-slash {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: var(--s5);
+    background-color: var(--light-blue);
+    color: var(--white);
+    margin: 5px;
+}
+
+.falta-energia-container .footer-form {
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--font-base);
+    color: var(--title);
+    border-top: 1px solid var(--border-color);
+    padding: 10px var(--s20) 0;
+    margin: 0 calc(var(--s20)* -1);
+    padding-top: 25px;
+}
+
+.falta-energia-container .box-with-icon {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: var(--s16);
+    margin-bottom: var(--s16);
+    min-height: 100%;
+}
+
+.falta-energia-container .box-with-icon .icon-box-light-bulb{
+    background: var(--light-blue);
+    border-radius: var(--s10);
+    width: var(--s65);
+    max-width: var(--s65);
+    min-width: var(--s65);
+    flex: 0 0 50%;
+    height: var(--s65);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+}
+
+.falta-energia-container .box-with-icon .title {
+    color: var(--light-blue);
+    font-size: var(--s14);
+    font-weight: bold;
+}
+
+.falta-energia-container .box-with-icon .sub-title {
+    margin-bottom: 0;
+    font-size: var(--s14);
+}
+
+.falta-energia-container .box-with-icon .nos-avise {
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+    font-size: var(--s12);
+    color: var(--light-blue);
+
+    p {
+        font-size: var(--s14);
+    }
+}
+
+.falta-energia-container .card-box-informar {
+    position: relative;
+    padding: var(--s35) var(--s25);
+    background-color: var(--light-blue);
+    border-radius: var(--s10);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--s60);
+    overflow: hidden;
+    color: var(--white);
+}
+
+.falta-energia-container .intro-text {
+    line-height: 1.7;
+
+    h2{
+        font-size: var(--s18);
+        font-weight: 700;
+        margin-top: 0;
+    }
+    p {
+        color: var(--title);
+        font-size: var(--s16);
+    }
+}
+
+.falta-energia-container .sms-info {
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+
+    p{
+        font-size: var(--s15);
+        color: var(--title);
+        margin: 0;
+        line-height: 1.7;
+    }
+}
+
+.falta-energia-container .sms-info .text-send-sms-blue {
+    color: var(--light-blue);
+}
