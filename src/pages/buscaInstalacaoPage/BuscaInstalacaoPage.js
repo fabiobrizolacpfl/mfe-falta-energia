@@ -104,7 +104,7 @@ function BuscaInstalacaoPage({steps, currentStep, nextStep, prevStep}) {
 
             <ListaInstalacoes 
                 instalacoes={mockInstalacoes}
-                selectedInstalacao={instalacaoSelecionada} // Use o contexto aqui
+                selectedInstalacao={instalacaoSelecionada} 
                 onSelectInstalacao={setInstalacaoSelecionada}  
             />
 

@@ -27,6 +27,13 @@ function ModalSteps({ open, setOpenModal, isChecked, setIsChecked }) {
         }
     };
 
+    useEffect(() => {
+        if (open) {
+            setModalStep(1);
+        }
+    }, [open]);
+    
+
     const modalContent = (
         <>
             {modalStep === 1 && (

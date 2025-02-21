@@ -7,12 +7,21 @@ import CardMeuImovel from "./components/CardMeuImovel";
 import CardVizinho from "./components/CardVizinho";
 import CardPoste from "./components/CardPoste";
 import ModalSteps from "./components/modalSteps";
+import CustomButton from "../../components/customButton/CustomButton";
+import EastIcon from '@mui/icons-material/East';
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
-function RelatarFaltaEnergiaPage({ steps, currentStep, nextStep }) {
+
+
+
+
+
+function RelatarFaltaEnergiaPage({ steps, currentStep, nextStep, prevStep }) {
     const [instalacoes, setInstalacoes] = useState([]);
     const [radioValue, setRadioValue] = useState("");
     const [openModal, setOpenModal] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
+
 
     const handleChangeRadio = (event) => {
         setRadioValue(event.target.value);
@@ -21,7 +30,7 @@ function RelatarFaltaEnergiaPage({ steps, currentStep, nextStep }) {
     const renderContent = (value) => {
         switch (value) {
             case 'meuimovel':
-                return <CardMeuImovel setIstalacoes={setInstalacoes} />;
+                return <CardMeuImovel  setOpenModal={setOpenModal} />
             case 'vizinhos':
                 return <CardVizinho setIstalacoes={setInstalacoes} />;
             case 'poste':
@@ -33,7 +42,7 @@ function RelatarFaltaEnergiaPage({ steps, currentStep, nextStep }) {
 
     useEffect(() => {
         if (radioValue === "meuimovel" && !isChecked) {
-            setOpenModal(true); 
+            setOpenModal(true);
         }
     }, [radioValue, isChecked]);
 
@@ -68,13 +77,31 @@ function RelatarFaltaEnergiaPage({ steps, currentStep, nextStep }) {
                     </Grid>
                 </Grid>
             </Box>
+
             {renderContent(radioValue)}
             <ModalSteps
                 open={openModal}
-                setOpenModal={setOpenModal} 
+                setOpenModal={setOpenModal}
                 isChecked={isChecked}
                 setIsChecked={setIsChecked}
             />
+
+            <Box className="footer-form">
+                <CustomButton
+                    label="Voltar"
+                    startIcon={<KeyboardBackspaceIcon />}
+                    onClick={prevStep}
+                />
+
+                {radioValue === "poste" && (
+                    <CustomButton
+                        label="Avançar"
+                        endIcon={<EastIcon />} // Ícone de direção
+                     
+                    />
+                )}
+            </Box>
+
         </Box>
     );
 }

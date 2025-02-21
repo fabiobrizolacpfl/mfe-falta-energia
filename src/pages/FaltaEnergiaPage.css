@@ -200,7 +200,6 @@
 
 
 .falta-energia-container-relatar {
-    
     max-height: 100%;
     width: 940px;
     border: 1px solid var(--border-color);
@@ -209,4 +208,31 @@
     margin-bottom: var(--s20);
     box-sizing: border-box;
 }
+
+.falta-energia-container-warning {
+    max-height: 100%;
+    width: 940px;
+    border: 1px solid var(--border-color);
+    padding: var(--s20);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--s20);
+    box-sizing: border-box;
+    background-color: var(--protocolo-alert-box-bg);
+    color : var(--white);
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.falta-energia-container-warning .btn-blue {
+    height: 100px !important;  /* Forçando a altura */
+}
+
+
+
+
+
+
+
 
