@@ -38,6 +38,9 @@ const PesquisaInstalacaoByCodInstalacao = ({setIstalacoes}) => {
                     </Box>
                     <img src="/images/modal-codigo-instalacao-bottom.png"/>
                 </Box>
+                <Box sx={{ m: 1, display: "flex", justifyContent: "center" }}>
+                <CustomButton onClick={handleCloseModal} label="Ok, entendi" />
+                </Box>
             </Box>
     );
 
