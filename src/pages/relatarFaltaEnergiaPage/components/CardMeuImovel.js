@@ -7,12 +7,7 @@ import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 
 
 
-    const CardMeuImovel = ({ setIstalacoes, setOpenModal }) => {
-
-
-    const handleOpenModal = () => {
-        setOpenModal(true);
-    };
+    const CardMeuImovel = ({  setOpenModal }) => {
 
     return (
         
