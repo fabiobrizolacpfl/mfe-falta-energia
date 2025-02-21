@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import EastIcon from '@mui/icons-material/East'; // Para o ícone de avançar
+import EastIcon from '@mui/icons-material/East'; 
 import CustomButton from "../../../components/customButton/CustomButton";
 
 
@@ -55,7 +55,7 @@ export default function ModalInstalacoes({ instalacao, open, handleClose, nextSt
                 variant="contained" 
                 onClick={() => {
                     nextStep(); 
-                    handleClose();  // Fechar a modal ao avançar
+                    handleClose();  
                 }} 
                 sx={{ width: '48%' }}
             >

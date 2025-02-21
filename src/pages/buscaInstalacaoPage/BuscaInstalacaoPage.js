@@ -12,13 +12,13 @@ import PesquisaInstalacaoByNrMedidor from "./components/PesquisaInstalacaoByNrMe
 import ListaInstalacoes from "./components/ListaInstalacoes";
 import InfoModal from "../../components/infoModal/InfoModal";
 import { Typography } from "@mui/material";
-import { useInstalacao } from "../../context/InstalacaoContext"; 
+import { useUser } from "../../context/UserContext"; // Atualizado de useInstalacao para useUser
 
 
 
 function BuscaInstalacaoPage({steps, currentStep, nextStep, prevStep}) {
 
-    const { instalacaoSelecionada, setInstalacaoSelecionada } = useInstalacao(); 
+    const { userData, setUserData } = useUser();
     const [openModal, setOpenModal] = useState(false);
     const [instalacoes, setInstalacoes] = useState([]);
     const [radioValue, setRadioValue] = useState('instalacao');
@@ -39,7 +39,6 @@ function BuscaInstalacaoPage({steps, currentStep, nextStep, prevStep}) {
             cidade: "Araraquara", 
             estado: "SP"
         },
-        // Pode adicionar mais instalações mockadas aqui
     ];
     const renderContent = (value) => {
         switch (value) {
@@ -55,7 +54,7 @@ function BuscaInstalacaoPage({steps, currentStep, nextStep, prevStep}) {
     };
 
     const handleAvancar = () => {
-        if (instalacaoSelecionada) {
+        if (userData.instalacaoSelecionada) {
             setOpenModal(true);
         }
     };
@@ -104,8 +103,8 @@ function BuscaInstalacaoPage({steps, currentStep, nextStep, prevStep}) {
 
             <ListaInstalacoes 
                 instalacoes={mockInstalacoes}
-                selectedInstalacao={instalacaoSelecionada} // Use o contexto aqui
-                onSelectInstalacao={setInstalacaoSelecionada}  
+                selectedInstalacao={userData.instalacaoSelecionada} 
+                onSelectInstalacao={(selectedInstalacao) => setUserData({ ...userData, instalacaoSelecionada: selectedInstalacao })}
             />
 
              <Box className="footer-form">
@@ -115,10 +114,10 @@ function BuscaInstalacaoPage({steps, currentStep, nextStep, prevStep}) {
                     onClick={prevStep}
                 />
 
-            <CustomButton label="Avançar"  disabled={!instalacaoSelecionada} endIcon={<EastIcon />} onClick={handleAvancar} />
+            <CustomButton label="Avançar"  disabled={!userData.instalacaoSelecionada} endIcon={<EastIcon />} onClick={handleAvancar} />
             </Box>
 
-            {instalacaoSelecionada && (
+            {userData.instalacaoSelecionada && (
                 <InfoModal 
                     open={openModal}
                     onClose={handleCloseModal}
@@ -127,10 +126,10 @@ function BuscaInstalacaoPage({steps, currentStep, nextStep, prevStep}) {
                             <Typography fontWeight="bold" variant="h6">O relato de falta de energia será no endereço informado abaixo:
                             </Typography>
                             <Typography sx={{ mt: 2, fontSize: '0.875rem' }}>
-                                <strong >CEP:</strong> {instalacaoSelecionada.cep} <br />
-                                <strong>Endereço:</strong> {instalacaoSelecionada.endereco} <br />
-                                <strong>Complemento:</strong> {instalacaoSelecionada.complemento} <br />
-                                <strong>Cidade:</strong> {instalacaoSelecionada.cidade} - {instalacaoSelecionada.estado}
+                                <strong >CEP:</strong> {userData.instalacaoSelecionada.cep} <br />
+                                <strong>Endereço:</strong> {userData.instalacaoSelecionada.endereco} <br />
+                                <strong>Complemento:</strong> {userData.instalacaoSelecionada.complemento} <br />
+                                <strong>Cidade:</strong> {userData.instalacaoSelecionada.cidade} - {userData.instalacaoSelecionada.estado}
                             </Typography>
                             <Typography sx={{ mt: 2,fontSize: '0.875rem'  }}>
                                 <b className="danger-text">ATENÇÃO:</b> Confirme se o endereço está correto para que nossa equipe tenha maior precisão ao se deslocar para o local informado.

@@ -30,7 +30,6 @@ function RelatarFaltaEnergiaPage({steps, currentStep, nextStep, prevStep}) {
             }
         };
 
-
     return (
         <Box className="falta-energia-container">
             <Box className="header-title">
@@ -48,7 +47,7 @@ function RelatarFaltaEnergiaPage({steps, currentStep, nextStep, prevStep}) {
                     <Grid item md={5}>
                         <Box className="falta-energia-container-relatar">
                             <FormControl>
-                                <FormLabel fontW>Onde está faltando luz?</FormLabel>
+                                <FormLabel >Onde está faltando luz?</FormLabel>
                                 <RadioGroup
                                     value={radioValue}
                                     onChange={handleChangeRadio}
