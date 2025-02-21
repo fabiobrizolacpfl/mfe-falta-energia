@@ -226,8 +226,26 @@
 }
 
 .falta-energia-container-warning .btn-blue {
-    height: 100px !important;  /* Forçando a altura */
+    height: 100px !important;  
 }
+
+.falta-energia-cardMeuImovel {
+    width: 940px;
+    border: 1px solid var(--border-color);
+    padding: var(--s20);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--s20);
+    box-sizing: border-box;
+}
+
+.radio-container {
+    display: flex;
+    flex-direction: column; 
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+}
+
 
 
 

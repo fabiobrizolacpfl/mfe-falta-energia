@@ -39,7 +39,6 @@ function BuscaInstalacaoPage({steps, currentStep, nextStep, prevStep}) {
             cidade: "Araraquara", 
             estado: "SP"
         },
-        // Pode adicionar mais instalações mockadas aqui
     ];
     const renderContent = (value) => {
         switch (value) {

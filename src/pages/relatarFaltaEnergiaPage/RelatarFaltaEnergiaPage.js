@@ -21,16 +21,26 @@ function RelatarFaltaEnergiaPage({ steps, currentStep, nextStep, prevStep }) {
     const [radioValue, setRadioValue] = useState("");
     const [openModal, setOpenModal] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
+    const [subRadioValue, setSubRadioValue] = useState(""); 
+
 
 
     const handleChangeRadio = (event) => {
         setRadioValue(event.target.value);
+        setSubRadioValue(""); 
     };
+
+    const handleChangeSubRadio = (event) => {
+        setSubRadioValue(event.target.value);
+    };
+
+    const isAvancarDisabled = radioValue !== "poste" && subRadioValue !== "nao"; 
+
 
     const renderContent = (value) => {
         switch (value) {
             case 'meuimovel':
-                return <CardMeuImovel  setOpenModal={setOpenModal} />
+                return <CardMeuImovel setOpenModal={setOpenModal} setSubRadioValue={setSubRadioValue} />
             case 'vizinhos':
                 return <CardVizinho setIstalacoes={setInstalacoes} />;
             case 'poste':
@@ -63,7 +73,9 @@ function RelatarFaltaEnergiaPage({ steps, currentStep, nextStep, prevStep }) {
                     <Grid item md={5}>
                         <Box className="falta-energia-container-relatar">
                             <FormControl>
-                                <FormLabel fontW>Onde está faltando luz?</FormLabel>
+                                <Typography>
+                                    Onde está faltando luz?
+                                </Typography>
                                 <RadioGroup
                                     value={radioValue}
                                     onChange={handleChangeRadio}
@@ -93,13 +105,13 @@ function RelatarFaltaEnergiaPage({ steps, currentStep, nextStep, prevStep }) {
                     onClick={prevStep}
                 />
 
-                {radioValue === "poste" && (
-                    <CustomButton
-                        label="Avançar"
-                        endIcon={<EastIcon />} // Ícone de direção
-                     
-                    />
-                )}
+                <CustomButton
+                    label="Avançar"
+                    endIcon={<EastIcon />}
+                    disabled={isAvancarDisabled}
+                    onClick={nextStep}
+                />
+
             </Box>
 
         </Box>
