@@ -60,6 +60,8 @@ const PesquisaInstalacaoByNrMedidor = ({setInstalacoes}) => {
                 <img src="/images/modal-num-medidor-bottom.png"/>
             </Box>
 
+             
+
         </Box>
     );
 
