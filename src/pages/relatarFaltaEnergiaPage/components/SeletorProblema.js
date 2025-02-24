@@ -13,9 +13,7 @@ const options = [
 
 export default function SeletorProblema() {
   const [selected, setSelected] = useState(null);
-  const [openModal, setOpenModal] = useState(false);
 
-  // Mensagens de warning
   const warningMessages = {
     "poste-caido": 'Você escolheu a opção <strong>"Poste Caído"</strong>, esta é uma situação emergencial. Certifique-se que você escolheu</br> a opção correta, e para sua segurança <strong>afaste-se da rede elétrica</strong>!',
     "fio-partido": `
@@ -41,7 +39,6 @@ export default function SeletorProblema() {
         </label>
       ))}
 
-      {/* Exibe o warning apenas se a opção selecionada for uma das que você deseja */}
       {selected && (selected === "poste-caido" || selected === "fio-partido" || selected === "risco-morte") && (
         <Box className="falta-energia-seletor-warning">
           <FormControl component="fieldset" className="radio-container">

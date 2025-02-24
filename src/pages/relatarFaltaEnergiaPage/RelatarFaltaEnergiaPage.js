@@ -40,7 +40,6 @@ function RelatarFaltaEnergiaPage({ steps, currentStep, nextStep, prevStep }) {
         setQuadRadioValue("");
     };
 
-
     const isAvancarDisabled = !(
         radioValue === "poste" ||
         (radioValue === "meuimovel" && subRadioValue === "nao" && thirdRadioValue === "nao") ||
@@ -50,8 +49,6 @@ function RelatarFaltaEnergiaPage({ steps, currentStep, nextStep, prevStep }) {
         (radioValue === "meuimovel" && subQuebradoRadioValue === "sim" && quadRadioValue === "sim")
     );
     
-
-
     const renderContent = (value) => {
         switch (value) {
             case 'meuimovel':

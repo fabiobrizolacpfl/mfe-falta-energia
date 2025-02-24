@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import CustomTextField from "../../../components/customTextField/CustomTextField";
-import SeletorProblema from "./SeletorProblema"; // Ajuste o caminho conforme necessário
+import SeletorProblema from "./SeletorProblema";
 
 
 const CardMeuImovel = ({ setOpenModal, setOpenModalFios, subQuebradoRadioValue, setSubQuebradoRadioValue, setSubRadioValue, setThirdRadioValue, thirdRadioValue, subRadioValue, quadRadioValue, setQuadRadioValue }) => {
