@@ -5,11 +5,13 @@ import { FormControl, FormControlLabel, FormLabel, Grid, Radio, RadioGroup } fro
 import StepHeaderCardComponent from "../../components/stepHeaderCardComponent/stepHeaderCardComponent";
 import CardMeuImovel from "./components/CardMeuImovel";
 import CardVizinho from "./components/CardVizinho";
-import CardPoste from "./components/CardPoste";
 import ModalSteps from "./components/modalSteps";
 import CustomButton from "../../components/customButton/CustomButton";
 import EastIcon from '@mui/icons-material/East';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+import ModalFios from "./components/modalFios";
+
+
 
 
 
@@ -20,31 +22,39 @@ function RelatarFaltaEnergiaPage({ steps, currentStep, nextStep, prevStep }) {
     const [instalacoes, setInstalacoes] = useState([]);
     const [radioValue, setRadioValue] = useState("");
     const [openModal, setOpenModal] = useState(false);
+    const [openModalFios, setOpenModalFios] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
-    const [subRadioValue, setSubRadioValue] = useState(""); 
+    const [isCheckedFios, setIsCheckedFios] = useState(false);
+    const [subRadioValue, setSubRadioValue] = useState("");
+    const [thirdRadioValue, setThirdRadioValue] = useState("");
+    const [quadRadioValue, setQuadRadioValue] = useState("");
 
 
 
     const handleChangeRadio = (event) => {
         setRadioValue(event.target.value);
-        setSubRadioValue(""); 
+        setSubRadioValue("");
+        setThirdRadioValue("");
     };
 
-    const handleChangeSubRadio = (event) => {
-        setSubRadioValue(event.target.value);
-    };
 
-    const isAvancarDisabled = radioValue !== "poste" && subRadioValue !== "nao"; 
+    const isAvancarDisabled = !(
+        radioValue === "poste" ||
+        (radioValue === "normal" && subRadioValue === "nao" && thirdRadioValue === "nao") ||
+        (radioValue === "meuimovel" && subRadioValue === "nao" && thirdRadioValue === "nao")
+    );
+
+
 
 
     const renderContent = (value) => {
         switch (value) {
             case 'meuimovel':
-                return <CardMeuImovel setOpenModal={setOpenModal} setSubRadioValue={setSubRadioValue} />
+                return <CardMeuImovel setOpenModalFios={setOpenModalFios} setOpenModal={setOpenModal} quadRadioValue={quadRadioValue} setQuadRadioValue={setQuadRadioValue} subRadioValue={subRadioValue} thirdRadioValue={thirdRadioValue} setSubRadioValue={setSubRadioValue} setThirdRadioValue={setThirdRadioValue} />
             case 'vizinhos':
                 return <CardVizinho setIstalacoes={setInstalacoes} />;
             case 'poste':
-                return <CardPoste setIstalacoes={setInstalacoes} />;
+                return
             default:
                 return null;
         }
@@ -97,6 +107,10 @@ function RelatarFaltaEnergiaPage({ steps, currentStep, nextStep, prevStep }) {
                 isChecked={isChecked}
                 setIsChecked={setIsChecked}
             />
+            <ModalFios open={openModalFios} 
+            setOpenModal={setOpenModalFios}
+                setIsCheckedFios={setIsCheckedFios}
+                isCheckedFios={isCheckedFios} />
 
             <Box className="footer-form">
                 <CustomButton

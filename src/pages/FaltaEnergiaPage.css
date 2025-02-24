@@ -198,6 +198,9 @@
     color: #0058a0;
 }
 
+.light-blue-text {
+    color: #00ade1;
+}
 
 .falta-energia-container-relatar {
     max-height: 100%;
@@ -236,16 +239,21 @@
     border-radius: var(--border-radius);
     margin-bottom: var(--s20);
     box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
 }
 
 .radio-container {
     display: flex;
-    flex-direction: column; 
-    justify-content: flex-start;
-    align-items: flex-start;
+    justify-content: space-between;
     width: 100%;
 }
 
+.radio-container-filho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
 
 

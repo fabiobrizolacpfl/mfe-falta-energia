@@ -13,39 +13,54 @@ import {
 } from "@mui/material";
 import { useState, useEffect } from "react";
 
-const CardMeuImovel = ({ setOpenModal,  setSubRadioValue  }) => {
+const CardMeuImovel = ({ setOpenModal, setOpenModalFios, setSubRadioValue, setThirdRadioValue, thirdRadioValue, subRadioValue, quadRadioValue, setQuadRadioValue }) => {
     const [radioValue, setRadioValue] = useState("");
-    const [subRadioValue, setSubRadioValueLocal] = useState(""); 
-    
+
     const handleChangeRadio = (event) => {
         setRadioValue(event.target.value);
-        setSubRadioValueLocal(""); 
-        setSubRadioValue(""); 
+        setSubRadioValue("");
+        setThirdRadioValue("");
+        setQuadRadioValue("");
     };
 
-      const handleChangeSubRadio = (event) => {
-        setSubRadioValueLocal(event.target.value);
+    const handleChangeSubRadio = (event) => {
         setSubRadioValue(event.target.value);
+        setThirdRadioValue("");
+        setQuadRadioValue("");
+    };
+
+    const handleChangeThirdRadio = (event) => {
+        setThirdRadioValue(event.target.value);
+        setQuadRadioValue("");
+    };
+
+    const handleChangeQuadRadio = (event) => {
+        setQuadRadioValue(event.target.value);
     };
 
     const renderContent = (value) => {
         switch (value) {
             case "normal":
                 return (
-                    <box>
+                    <Box>
                         <Grid container spacing={5}>
                             <Grid item md={5}>
                                 <Box className="falta-energia-container-warning">
-                                    <WarningAmberIcon sx={{ width: 40, height: 50 }} />
-                                    <Typography>
-                                        Verifique se existem fios partidos no interior da sua
-                                        residência.
-                                    </Typography>
-                                    <CustomButton
-                                        height="50px"
-                                        label="Como verificar o fio partido?"
-                                        onClick={() => setOpenModal(true)}
-                                    />
+                                    <FormControl component="fieldset" className="radio-container">
+                                        <Box className="radio-container-filho">
+                                            <WarningAmberIcon sx={{ width: 40, height: 50 }} />
+                                            <Typography>
+                                                Verifique se existem fios partidos no interior da sua
+                                                residência.
+                                            </Typography>
+                                            <CustomButton
+                                                height="50px"
+                                                label="Como verificar o fio partido?"
+                                                onClick={() => setOpenModalFios(true)}
+                                            />
+                                        </Box>
+                                    </FormControl>
+
                                 </Box>
                             </Grid>
                         </Grid>
@@ -53,18 +68,20 @@ const CardMeuImovel = ({ setOpenModal,  setSubRadioValue  }) => {
                             <Grid item md={5}>
                                 <Box className="falta-energia-cardMeuImovel">
                                     <FormControl component="fieldset" className="radio-container">
-                                        <Typography>
-                                            Existe fio partido do postinho para o interior da residência?
-                                        </Typography>
-                                        <RadioGroup row value={subRadioValue} onChange={handleChangeSubRadio}>
-                                            <FormControlLabel value="sim" control={<Radio />} label="Sim" />
-                                            <FormControlLabel value="nao" control={<Radio />} label="Não" />
-                                        </RadioGroup>
+                                        <Box className="radio-container-filho">
+                                            <Typography >
+                                                Existe fio partido do postinho para o interior da residência?
+                                            </Typography>
+                                            <RadioGroup row value={subRadioValue} onChange={handleChangeSubRadio}>
+                                                <FormControlLabel value="sim" control={<Radio />} label="Sim" />
+                                                <FormControlLabel value="nao" control={<Radio />} label="Não" />
+                                            </RadioGroup>
+                                        </Box>
                                     </FormControl>
                                 </Box>
                             </Grid>
                         </Grid>
-                    </box>
+                    </Box>
                 );
             case "quebrado":
                 return;
@@ -78,25 +95,54 @@ const CardMeuImovel = ({ setOpenModal,  setSubRadioValue  }) => {
     const renderSubContent = (subValue) => {
         switch (subValue) {
             case "sim":
-                return 
+                return
             case "nao":
                 return (
                     <Grid container spacing={5}>
+                        <Grid item md={5}>
+                            <Box className="falta-energia-cardMeuImovel">
+                                <FormControl component="fieldset" className="radio-container">
+                                    <Box className="radio-container-filho">
+                                        <Typography>
+                                            Já verificou sua instalação interna com um eletricista particular?
+                                        </Typography>
+                                        <RadioGroup row value={thirdRadioValue} onChange={handleChangeThirdRadio}>
+                                            <FormControlLabel value="sim" control={<Radio />} label="Sim" />
+                                            <FormControlLabel value="nao" control={<Radio />} label="Não" />
+                                        </RadioGroup>
+                                    </Box>
+                                </FormControl>
+                            </Box>
+                        </Grid>
+                    </Grid>
+                );
+            default:
+                return null;
+        }
+    };
+
+    const renderThirdContent = (thirdValue) => {
+        switch (thirdValue) {
+            case "sim":
+                return (<Grid container spacing={5}>
                     <Grid item md={5}>
                         <Box className="falta-energia-cardMeuImovel">
                             <FormControl component="fieldset" className="radio-container">
-                                <Typography>
-                                Já verificou sua instalação interna com um eletricista particular?
-                                </Typography>
-                                <RadioGroup row value={subRadioValue} onChange={handleChangeSubRadio}>
-                                    <FormControlLabel value="sim" control={<Radio />} label="Sim" />
-                                    <FormControlLabel value="nao" control={<Radio />} label="Não" />
-                                </RadioGroup>
+                                <Box className="radio-container-filho">
+                                    <Typography>
+                                        Você sabe o que provocou a falta de energia?
+                                    </Typography>
+                                    <RadioGroup row value={quadRadioValue} onChange={handleChangeQuadRadio}>
+                                        <FormControlLabel value="sim" control={<Radio />} label="Sim" />
+                                        <FormControlLabel value="nao" control={<Radio />} label="Não" />
+                                    </RadioGroup>
+                                </Box>
                             </FormControl>
                         </Box>
                     </Grid>
-                </Grid>
-                );
+                </Grid>);
+            case "nao":
+                return
             default:
                 return null;
         }
@@ -107,19 +153,24 @@ const CardMeuImovel = ({ setOpenModal,  setSubRadioValue  }) => {
             <Grid container spacing={5}>
                 <Grid item md={5}>
                     <Box className="falta-energia-container-warning">
-                        <WarningAmberIcon sx={{ width: 40, height: 50 }} />
-                        <Typography>
-                            Nossa equipe não pode efetuar reparos nas Instalações internas. Se
-                            a falta<br></br> de energia está afetando apenas sua residência,
-                            verifique os disjuntores<br></br> internos ou procure um
-                            eletricista de sua preferência. Caso não seja<br></br>{" "}
-                            identificado nenhum problema, entre em contato conosco.
-                        </Typography>
-                        <CustomButton
-                            height="50px"
-                            label="Como verificar meu disjuntor?"
-                            onClick={() => setOpenModal(true)}
-                        />
+                        <FormControl component="fieldset" className="radio-container">
+                            <Box className="radio-container-filho">
+                                <WarningAmberIcon sx={{ width: 40, height: 50 }} />
+                                <Typography>
+                                    Nossa equipe não pode efetuar reparos nas Instalações internas. Se
+                                    a falta<br></br> de energia está afetando apenas sua residência,
+                                    verifique os disjuntores<br></br> internos ou procure um
+                                    eletricista de sua preferência. Caso não seja<br></br>{" "}
+                                    identificado nenhum problema, entre em contato conosco.
+                                </Typography>
+                                <CustomButton
+                                    height="50px"
+                                    label="Como verificar meu disjuntor?"
+                                    onClick={() => setOpenModal(true)}
+                                />
+                            </Box>
+                        </FormControl>
+
                     </Box>
                 </Grid>
             </Grid>
@@ -158,7 +209,8 @@ const CardMeuImovel = ({ setOpenModal,  setSubRadioValue  }) => {
                 </Grid>
             </Grid>
             {renderContent(radioValue)}
-            {radioValue === "normal" && renderSubContent(subRadioValue)}    
+            {radioValue === "normal" && renderSubContent(subRadioValue)}
+            {radioValue === "normal" && renderThirdContent(thirdRadioValue)}
         </Box>
     );
 };
