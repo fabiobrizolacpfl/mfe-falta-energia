@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { Box, Typography, FormControl } from "@mui/material";
+import { Box, Typography, FormControl, Tooltip } from "@mui/material";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 
 const options = [
-  { id: "objetos-rede", label: "Objetos na rede", tooltip: "Objeto estranho na rede..." },
-  { id: "poste-caido", label: "Poste caído", tooltip: "Poste caído na área." },
-  { id: "fio-partido", label: "Fio partido", tooltip: "Fios partidos na rua." },
-  { id: "faiscamento", label: "Faiscamento", tooltip: "Faíscas visíveis na rede elétrica." },
-  { id: "risco-morte", label: "Risco de morte", tooltip: "Risco de vida devido a falha elétrica." },
-  { id: "outros", label: "Outros", tooltip: "Outro tipo de problema não listado." }
+  { id: "objetos-rede", label: "Objetos na rede", tooltip: "Objeto estranho na rede:</br> São objetos pendurados nos fios de energia, como pipa, tênis e entre outros." },
+  { id: "poste-caido", label: "Poste caído", tooltip: "Poste caído:</br> Poste da rua está caído. Normalmente envolve acidente com veículo." },
+  { id: "fio-partido", label: "Fio partido", tooltip: "Fio partido:</br>Situações envolvendo cabos de energia partidos em via pública." },
+  { id: "faiscamento", label: "Faiscamento", tooltip: "Faiscamento:</br>Faíscas elétricas visivelmente em: Cabos de energia, chave fusível, transformador ou no poste de energia." },
+  { id: "risco-morte", label: "Risco de morte", tooltip: "Risco de morte:</br>Este serviço deverá ser utilizado quando houver risco de ocorrer acidentes envolvendo a rede elétrica, falta de energia em um hospital ou quando no local tem uma pessoa dependente de aparelho para sobreviver." },
+  { id: "outros", label: "Outros", tooltip: "Outros:</br>Nenhum dos motivos anteriores, mas falta luz." }
 ];
 
 export default function SeletorProblema() {
@@ -29,6 +29,12 @@ export default function SeletorProblema() {
   return (
     <div className="options-container">
       {options.map((option) => (
+         <Tooltip
+         key={option.id}
+         title={<Typography component="span" dangerouslySetInnerHTML={{ __html: option.tooltip }} />}
+         arrow
+       >
+
         <label
           key={option.id}
           htmlFor={option.id}
@@ -37,6 +43,8 @@ export default function SeletorProblema() {
         >
           {option.label}
         </label>
+        </Tooltip>
+
       ))}
 
       {selected && (selected === "poste-caido" || selected === "fio-partido" || selected === "risco-morte") && (
