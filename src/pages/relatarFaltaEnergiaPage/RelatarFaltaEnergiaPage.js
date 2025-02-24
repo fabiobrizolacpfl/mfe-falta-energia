@@ -46,15 +46,17 @@ function RelatarFaltaEnergiaPage({ steps, currentStep, nextStep, prevStep }) {
         (radioValue === "meuimovel" && subRadioValue === "sim") || 
         (radioValue === "meuimovel" && subQuebradoRadioValue === "nao") ||
         (radioValue === "meuimovel" && quadRadioValue === "nao") ||
-        (radioValue === "meuimovel" && subQuebradoRadioValue === "sim" && quadRadioValue === "sim")
-    );
+        (radioValue === "meuimovel" && subQuebradoRadioValue === "sim" && quadRadioValue === "sim") ||
+        (radioValue === "vizinhos" && quadRadioValue === "nao") ||
+        (radioValue === "vizinhos" && quadRadioValue === "sim")
+    );  
     
     const renderContent = (value) => {
         switch (value) {
             case 'meuimovel':
                 return <CardMeuImovel setOpenModalFios={setOpenModalFios} setOpenModal={setOpenModal} subQuebradoRadioValue={subQuebradoRadioValue} setSubQuebradoRadioValue ={setSubQuebradoRadioValue} quadRadioValue={quadRadioValue} setQuadRadioValue={setQuadRadioValue} subRadioValue={subRadioValue} thirdRadioValue={thirdRadioValue} setSubRadioValue={setSubRadioValue} setThirdRadioValue={setThirdRadioValue} />
             case 'vizinhos':
-                return <CardVizinho setIstalacoes={setInstalacoes} />;
+                return <CardVizinho quadRadioValue={quadRadioValue} setQuadRadioValue={setQuadRadioValue} />;
             case 'poste':
                 return
             default:
