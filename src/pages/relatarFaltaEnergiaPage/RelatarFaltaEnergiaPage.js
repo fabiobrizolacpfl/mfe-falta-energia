@@ -26,6 +26,7 @@ function RelatarFaltaEnergiaPage({ steps, currentStep, nextStep, prevStep }) {
     const [isChecked, setIsChecked] = useState(false);
     const [isCheckedFios, setIsCheckedFios] = useState(false);
     const [subRadioValue, setSubRadioValue] = useState("");
+    const [subQuebradoRadioValue, setSubQuebradoRadioValue] = useState("");
     const [thirdRadioValue, setThirdRadioValue] = useState("");
     const [quadRadioValue, setQuadRadioValue] = useState("");
 
@@ -34,23 +35,27 @@ function RelatarFaltaEnergiaPage({ steps, currentStep, nextStep, prevStep }) {
     const handleChangeRadio = (event) => {
         setRadioValue(event.target.value);
         setSubRadioValue("");
+        setSubQuebradoRadioValue("");
         setThirdRadioValue("");
+        setQuadRadioValue("");
     };
 
 
     const isAvancarDisabled = !(
         radioValue === "poste" ||
-        (radioValue === "normal" && subRadioValue === "nao" && thirdRadioValue === "nao") ||
-        (radioValue === "meuimovel" && subRadioValue === "nao" && thirdRadioValue === "nao")
+        (radioValue === "meuimovel" && subRadioValue === "nao" && thirdRadioValue === "nao") ||
+        (radioValue === "meuimovel" && subRadioValue === "sim") || 
+        (radioValue === "meuimovel" && subQuebradoRadioValue === "nao") ||
+        (radioValue === "meuimovel" && quadRadioValue === "nao") ||
+        (radioValue === "meuimovel" && subQuebradoRadioValue === "sim" && quadRadioValue === "sim")
     );
-
-
+    
 
 
     const renderContent = (value) => {
         switch (value) {
             case 'meuimovel':
-                return <CardMeuImovel setOpenModalFios={setOpenModalFios} setOpenModal={setOpenModal} quadRadioValue={quadRadioValue} setQuadRadioValue={setQuadRadioValue} subRadioValue={subRadioValue} thirdRadioValue={thirdRadioValue} setSubRadioValue={setSubRadioValue} setThirdRadioValue={setThirdRadioValue} />
+                return <CardMeuImovel setOpenModalFios={setOpenModalFios} setOpenModal={setOpenModal} subQuebradoRadioValue={subQuebradoRadioValue} setSubQuebradoRadioValue ={setSubQuebradoRadioValue} quadRadioValue={quadRadioValue} setQuadRadioValue={setQuadRadioValue} subRadioValue={subRadioValue} thirdRadioValue={thirdRadioValue} setSubRadioValue={setSubRadioValue} setThirdRadioValue={setThirdRadioValue} />
             case 'vizinhos':
                 return <CardVizinho setIstalacoes={setInstalacoes} />;
             case 'poste':

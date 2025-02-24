@@ -79,17 +79,17 @@ function ModalFios({ open, setOpenModal, isCheckedFios, setIsCheckedFios }) {
                 </FormControl>
             </Box>
             <Typography sx={{ mt: 2, fontSize: "0.850rem" }}>
-                        <FormControlLabel
-                            required
-                            control={
-                                <Checkbox
-                                    checked={isCheckedFios}
-                                    onChange={(e) => setIsCheckedFios(e.target.checked)}
-                                />
-                            }
-                            label="Declaro que estou ciente das informações acima"
+                <FormControlLabel
+                    required
+                    control={
+                        <Checkbox
+                            checked={isCheckedFios}
+                            onChange={(e) => setIsCheckedFios(e.target.checked)}
                         />
-                    </Typography>
+                    }
+                    label="Declaro que estou ciente das informações acima"
+                />
+            </Typography>
 
             <Box sx={{ mt: 9, display: "flex", justifyContent: "space-evenly" }}>
                 <CustomButton label="Avançar" onClick={handleCloseModal} disabled={!isCheckedFios} />

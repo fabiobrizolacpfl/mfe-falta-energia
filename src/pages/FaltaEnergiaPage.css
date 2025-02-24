@@ -202,6 +202,8 @@
     color: #00ade1;
 }
 
+
+
 .falta-energia-container-relatar {
     max-height: 100%;
     width: 940px;
@@ -255,6 +257,78 @@
     align-items: center;
 }
 
+.radio-container-filho-vertical {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
+    align-items: flex-start; 
+    width: 100%;
+}
+
+.form-container-filho {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    gap:40px;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.options-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.custom-label {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #0058a0;
+  border-radius: 10px;
+  padding: 40px 22px 13px;
+  height: 70px;
+  width: 84px;
+  text-align: center;
+  font-size: 14px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  color: #0058a0;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.custom-label:hover {
+  background: #d0e4f7;
+}
+
+.custom-label.selected {
+  background: #0058a0;
+  color: white;
+}
+
+.falta-energia-seletor-warning {
+    max-height: 100%;
+    width: 100%;
+    border: 1px solid var(--border-color);
+    padding: var(--s20);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--s20);
+    box-sizing: border-box;
+    background-color: var(--protocolo-alert-box-bg);
+    color : var(--white);
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
 
 
 

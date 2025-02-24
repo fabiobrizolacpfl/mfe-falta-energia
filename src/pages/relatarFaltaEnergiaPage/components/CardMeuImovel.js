@@ -6,25 +6,34 @@ import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 import {
     FormControl,
     FormControlLabel,
-    FormLabel,
-    grid,
     Radio,
     RadioGroup,
+    Checkbox
 } from "@mui/material";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import CustomTextField from "../../../components/customTextField/CustomTextField";
+import SeletorProblema from "./SeletorProblema"; // Ajuste o caminho conforme necessário
 
-const CardMeuImovel = ({ setOpenModal, setOpenModalFios, setSubRadioValue, setThirdRadioValue, thirdRadioValue, subRadioValue, quadRadioValue, setQuadRadioValue }) => {
+
+const CardMeuImovel = ({ setOpenModal, setOpenModalFios, subQuebradoRadioValue, setSubQuebradoRadioValue, setSubRadioValue, setThirdRadioValue, thirdRadioValue, subRadioValue, quadRadioValue, setQuadRadioValue }) => {
     const [radioValue, setRadioValue] = useState("");
 
     const handleChangeRadio = (event) => {
         setRadioValue(event.target.value);
         setSubRadioValue("");
+        setSubQuebradoRadioValue("");
         setThirdRadioValue("");
         setQuadRadioValue("");
     };
 
     const handleChangeSubRadio = (event) => {
         setSubRadioValue(event.target.value);
+        setThirdRadioValue("");
+        setQuadRadioValue("");
+    };
+
+    const handleChangeSubQuebradoRadio = (event) => {
+        setSubQuebradoRadioValue(event.target.value);
         setThirdRadioValue("");
         setQuadRadioValue("");
     };
@@ -50,8 +59,7 @@ const CardMeuImovel = ({ setOpenModal, setOpenModalFios, setSubRadioValue, setTh
                                         <Box className="radio-container-filho">
                                             <WarningAmberIcon sx={{ width: 40, height: 50 }} />
                                             <Typography>
-                                                Verifique se existem fios partidos no interior da sua
-                                                residência.
+                                                Verifique se existem fios partidos no interior da sua residência.
                                             </Typography>
                                             <CustomButton
                                                 height="50px"
@@ -60,7 +68,6 @@ const CardMeuImovel = ({ setOpenModal, setOpenModalFios, setSubRadioValue, setTh
                                             />
                                         </Box>
                                     </FormControl>
-
                                 </Box>
                             </Grid>
                         </Grid>
@@ -84,7 +91,25 @@ const CardMeuImovel = ({ setOpenModal, setOpenModalFios, setSubRadioValue, setTh
                     </Box>
                 );
             case "quebrado":
-                return;
+                return (
+                    <Grid container spacing={5}>
+                        <Grid item md={5}>
+                            <Box className="falta-energia-cardMeuImovel">
+                                <FormControl component="fieldset" className="radio-container">
+                                    <Box className="radio-container-filho">
+                                        <Typography >
+                                            Já verificou sua instalação interna com um eletricista particular?
+                                        </Typography>
+                                        <RadioGroup row value={subQuebradoRadioValue} onChange={handleChangeSubQuebradoRadio}>
+                                            <FormControlLabel value="sim" control={<Radio />} label="Sim" />
+                                            <FormControlLabel value="nao" control={<Radio />} label="Não" />
+                                        </RadioGroup>
+                                    </Box>
+                                </FormControl>
+                            </Box>
+                        </Grid>
+                    </Grid>
+                );
             case "naoVerificado":
                 return;
             default:
@@ -95,7 +120,7 @@ const CardMeuImovel = ({ setOpenModal, setOpenModalFios, setSubRadioValue, setTh
     const renderSubContent = (subValue) => {
         switch (subValue) {
             case "sim":
-                return
+                return;
             case "nao":
                 return (
                     <Grid container spacing={5}>
@@ -142,9 +167,143 @@ const CardMeuImovel = ({ setOpenModal, setOpenModalFios, setSubRadioValue, setTh
                     </Grid>
                 </Grid>);
             case "nao":
-                return
+                return;
             default:
                 return null;
+        }
+    };
+
+    const renderQuadContent = (quadValue) => {
+        if (quadValue === "nao") {
+            return (
+                <Grid container spacing={5}>
+                    <Grid item md={5}>
+                        <FormControl component="fieldset" className="radio-container">
+                            <Box className="falta-energia-cardMeuImovel">
+                                <Box className="radio-container-filho-vertical">
+                                    <Typography sx={{ mt: 2, fontSize: "0.875rem" }} fontWeight="bold">
+                                        Observação
+                                    </Typography>
+                                    <CustomTextField placeholder="Insira informações relevantes" multiline={true}>
+                                    </CustomTextField>
+                                    <Typography sx={{ mt: 2, fontSize: "0.875rem" }} fontWeight="bold">
+                                        Ponto de referência próximo ao local <span style={{ color: "red" }}>*</span>
+                                    </Typography>
+                                    <CustomTextField placeholder="Ex: Próximo a rodoviária" multiline={true}>
+                                    </CustomTextField>
+                                    <Typography sx={{ mt: 2, fontSize: "0.875rem" }} fontWeight="bold">
+                                        Solicitante
+                                    </Typography>
+                                    <Box className="form-container-filho">
+                                        <Box className="input-container" sx={{ width: "70%" }}>
+                                            <Typography sx={{ mt: 2, fontSize: "0.875rem" }} fontWeight="bold">
+                                                Nome completo <span style={{ color: "red" }}>*</span>
+                                            </Typography>
+                                            <CustomTextField multiline={true} />
+                                            <Typography>
+                                            </Typography>
+                                        </Box>
+                                        <Box className="input-container" sx={{ width: "25%" }}>
+                                            <Typography sx={{ mt: 2, fontSize: "0.875rem" }} fontWeight="bold">
+                                                Celular <span style={{ color: "red" }}>*</span>
+                                            </Typography>
+                                            <CustomTextField type="tel" placeholder="(__) _____-____" multiline={true} />
+                                            <Typography color="textDisabled" sx={{ fontSize: "0.7rem" }}>
+                                                Preencher corretamente para<br></br> entrarmos em contato se necessário.
+                                            </Typography>
+                                        </Box>
+                                    </Box>
+                                    <Typography sx={{ mt: 2, fontSize: "0.875rem" }} fontWeight="bold">
+                                        E-mail
+                                    </Typography>
+                                    <CustomTextField type="email" multiline={true}>
+                                    </CustomTextField>
+                                    <Typography sx={{ mt: 2, fontSize: "0.850rem" }}>
+                                        <FormControlLabel
+                                            required
+                                            control={
+                                                <Checkbox
+                                                // checked={isCheckedFios}
+                                                // onChange={(e) => setIsCheckedFios(e.target.checked)}
+                                                />
+                                            }
+                                            label="Desejo receber informações sobre falta de energia."
+                                        />
+                                    </Typography>
+                                </Box>
+                            </Box>
+                        </FormControl>
+                    </Grid>
+                </Grid>
+
+            );
+        }
+        else if (quadValue === "sim") {
+            return (
+                <Grid container spacing={5}>
+                    <Grid item md={5}>
+                        <FormControl component="fieldset" className="radio-container">
+                            <Box className="falta-energia-cardMeuImovel">
+                                <Box className="radio-container-filho-vertical">
+                                    <Typography sx={{ mt: 2, fontSize: "0.875rem" }} fontWeight="bold">
+                                        Selecione o motivo que foi presenciado:
+                                    </Typography>
+                                    <SeletorProblema />
+                                    <Typography sx={{ mt: 2, fontSize: "0.875rem" }} fontWeight="bold">
+                                        Observação
+                                    </Typography>
+                                    <CustomTextField placeholder="Insira informações relevantes" multiline={true}>
+                                    </CustomTextField>
+                                    <Typography sx={{ mt: 2, fontSize: "0.875rem" }} fontWeight="bold">
+                                        Ponto de referência próximo ao local <span style={{ color: "red" }}>*</span>
+                                    </Typography>
+                                    <CustomTextField placeholder="Ex: Próximo a rodoviária" multiline={true}>
+                                    </CustomTextField>
+                                    <Typography sx={{ mt: 2, fontSize: "0.875rem" }} fontWeight="bold">
+                                        Solicitante
+                                    </Typography>
+                                    <Box className="form-container-filho">
+                                        <Box className="input-container" sx={{ width: "70%" }}>
+                                            <Typography sx={{ mt: 2, fontSize: "0.875rem" }} fontWeight="bold">
+                                                Nome completo <span style={{ color: "red" }}>*</span>
+                                            </Typography>
+                                            <CustomTextField multiline={true} />
+                                            <Typography>
+                                            </Typography>
+                                        </Box>
+                                        <Box className="input-container" sx={{ width: "25%" }}>
+                                            <Typography sx={{ mt: 2, fontSize: "0.875rem" }} fontWeight="bold">
+                                                Celular <span style={{ color: "red" }}>*</span>
+                                            </Typography>
+                                            <CustomTextField type="tel" placeholder="(__) _____-____" multiline={true} />
+                                            <Typography color="textDisabled" sx={{ fontSize: "0.7rem" }}>
+                                                Preencher corretamente para<br></br> entrarmos em contato se necessário.
+                                            </Typography>
+                                        </Box>
+                                    </Box>
+                                    <Typography sx={{ mt: 2, fontSize: "0.875rem" }} fontWeight="bold">
+                                        E-mail
+                                    </Typography>
+                                    <CustomTextField type="email" multiline={true}>
+                                    </CustomTextField>
+                                    <Typography sx={{ mt: 2, fontSize: "0.850rem" }}>
+                                        <FormControlLabel
+                                            required
+                                            control={
+                                                <Checkbox
+                                                // checked={isCheckedFios}
+                                                // onChange={(e) => setIsCheckedFios(e.target.checked)}
+                                                />
+                                            }
+                                            label="Desejo receber informações sobre falta de energia."
+                                        />
+                                    </Typography>
+                                </Box>
+                            </Box>
+                        </FormControl>
+                    </Grid>
+                </Grid>
+            );
         }
     };
 
@@ -157,10 +316,8 @@ const CardMeuImovel = ({ setOpenModal, setOpenModalFios, setSubRadioValue, setTh
                             <Box className="radio-container-filho">
                                 <WarningAmberIcon sx={{ width: 40, height: 50 }} />
                                 <Typography>
-                                    Nossa equipe não pode efetuar reparos nas Instalações internas. Se
-                                    a falta<br></br> de energia está afetando apenas sua residência,
-                                    verifique os disjuntores<br></br> internos ou procure um
-                                    eletricista de sua preferência. Caso não seja<br></br>{" "}
+                                    Nossa equipe não pode efetuar reparos nas Instalações internas. Se a falta<br></br> de energia está afetando apenas sua residência,
+                                    verifique os disjuntores<br></br> internos ou procure um eletricista de sua preferência. Caso não seja<br></br>{" "}
                                     identificado nenhum problema, entre em contato conosco.
                                 </Typography>
                                 <CustomButton
@@ -170,7 +327,6 @@ const CardMeuImovel = ({ setOpenModal, setOpenModalFios, setSubRadioValue, setTh
                                 />
                             </Box>
                         </FormControl>
-
                     </Box>
                 </Grid>
             </Grid>
@@ -209,8 +365,11 @@ const CardMeuImovel = ({ setOpenModal, setOpenModalFios, setSubRadioValue, setTh
                 </Grid>
             </Grid>
             {renderContent(radioValue)}
-            {radioValue === "normal" && renderSubContent(subRadioValue)}
-            {radioValue === "normal" && renderThirdContent(thirdRadioValue)}
+            {renderSubContent(subRadioValue)}
+            {renderThirdContent(thirdRadioValue)}
+            {renderThirdContent(subQuebradoRadioValue)}
+            {renderQuadContent(quadRadioValue)}
+            { }
         </Box>
     );
 };
