@@ -1,8 +1,6 @@
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
-import CustomButton from "../../../components/customButton/CustomButton";
 import { Grid } from "@mui/material";
-import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 import {
     FormControl,
     FormControlLabel,
@@ -14,7 +12,7 @@ import { useState } from "react";
 import CustomTextField from "../../../components/customTextField/CustomTextField";
 import SeletorProblema from "./SeletorProblema";
 
-const CardVizinho = ({ quadRadioValue, setQuadRadioValue}) => {
+const CardVizinho = ({ quadRadioValue, setQuadRadioValue }) => {
     const [radioValue, setRadioValue] = useState("");
 
     const handleChangeRadio = (event) => {
@@ -26,7 +24,7 @@ const CardVizinho = ({ quadRadioValue, setQuadRadioValue}) => {
         setQuadRadioValue(event.target.value);
     };
 
-    
+
     const renderThirdContent = (radioValue) => {
         if (["total", "parcial"].includes(radioValue)) {
             return (
@@ -53,7 +51,7 @@ const CardVizinho = ({ quadRadioValue, setQuadRadioValue}) => {
     };
 
 
-    
+
     const renderQuadContent = (quadValue) => {
         if (quadValue === "nao") {
             return (
@@ -191,26 +189,26 @@ const CardVizinho = ({ quadRadioValue, setQuadRadioValue}) => {
     return (
 
         <Box>
-        <Grid container spacing={5}>
-            <Grid item md={5}>
-                <Box className="falta-energia-cardMeuImovel">
-                    <FormControl component="fieldset" className="radio-container">
-                        <Box className="radio-container-filho">
-                            <Typography >
-                            Trata-se de falta de energia total ou parcial?
-                            </Typography>
-                            <RadioGroup row value={radioValue} onChange={handleChangeRadio}>
-                                <FormControlLabel value="total" control={<Radio />} label="Total" />
-                                <FormControlLabel value="parcial" control={<Radio />} label="Parcial (oscilando ou Fraca)" />
-                            </RadioGroup>
-                        </Box>
-                    </FormControl>
-                </Box>
+            <Grid container spacing={5}>
+                <Grid item md={5}>
+                    <Box className="falta-energia-cardMeuImovel">
+                        <FormControl component="fieldset" className="radio-container">
+                            <Box className="radio-container-filho">
+                                <Typography >
+                                    Trata-se de falta de energia total ou parcial?
+                                </Typography>
+                                <RadioGroup row value={radioValue} onChange={handleChangeRadio}>
+                                    <FormControlLabel value="total" control={<Radio />} label="Total" />
+                                    <FormControlLabel value="parcial" control={<Radio />} label="Parcial (oscilando ou Fraca)" />
+                                </RadioGroup>
+                            </Box>
+                        </FormControl>
+                    </Box>
+                </Grid>
             </Grid>
-        </Grid>     
-        {renderThirdContent(radioValue)}
-        {renderQuadContent(quadRadioValue)}
-        </Box>   
+            {renderThirdContent(radioValue)}
+            {renderQuadContent(quadRadioValue)}
+        </Box>
     );
 }
 

@@ -3,8 +3,6 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import EastIcon from '@mui/icons-material/East'; // Para o ícone de avançar
-import CustomButton from "../../../components/customButton/CustomButton";
 
 
 const style = {
@@ -44,22 +42,22 @@ export default function ModalInstalacoes({ instalacao, open, handleClose, nextSt
         </Typography>
 
         <Box sx={{ mt: 2, display: 'flex', justifyContent: 'space-between' }}>
-          <Button 
-            variant="outlined" 
-            onClick={handleClose} 
+          <Button
+            variant="outlined"
+            onClick={handleClose}
             sx={{ width: '48%' }}
           >
             Revisar Endereço
           </Button>
-          <Button 
-                variant="contained" 
-                onClick={() => {
-                    nextStep(); 
-                    handleClose();  // Fechar a modal ao avançar
-                }} 
-                sx={{ width: '48%' }}
-            >
-                Confirmar Endereço
+          <Button
+            variant="contained"
+            onClick={() => {
+              nextStep();
+              handleClose();  // Fechar a modal ao avançar
+            }}
+            sx={{ width: '48%' }}
+          >
+            Confirmar Endereço
           </Button>
         </Box>
       </Box>

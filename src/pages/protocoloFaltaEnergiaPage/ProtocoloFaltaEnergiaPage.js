@@ -16,26 +16,7 @@ function ProtocoloFaltaEnergiaPage({ steps, currentStep, prevStep }) {
 
     const [protocolo, setProtocolo] = useState("1234567890");
 
-    const dataHoraProtocolo = new Date().toLocaleString("pt-BR", {
-        timeZone: "America/Sao_Paulo",
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit"
-    });
 
-    const [checked, setChecked] = useState(() => {
-        const storedValue = localStorage.getItem('checkboxStatePageIntro');
-        return storedValue ? JSON.parse(storedValue) : false;
-    });
-
-    const handleChangeCheckBoxPageIntro = (event) => {
-        const newChecked = event.target.checked;
-        setChecked(newChecked);
-        localStorage.setItem('checkboxStatePageIntro', JSON.stringify(newChecked));
-    };
 
     return (
         <>

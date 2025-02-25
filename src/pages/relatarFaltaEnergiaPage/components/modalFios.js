@@ -17,7 +17,7 @@ function ModalFios({ open, setOpenModal, isCheckedFios, setIsCheckedFios }) {
         if (open) {
             setIsCheckedFios(false);
         }
-    }, [open]);
+    }, [open, setIsCheckedFios]);
 
 
     const modalContent = (
