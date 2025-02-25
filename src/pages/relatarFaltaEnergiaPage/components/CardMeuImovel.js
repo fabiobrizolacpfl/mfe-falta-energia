@@ -207,7 +207,11 @@ const CardMeuImovel = ({ setOpenModal, setOpenModalFios, subQuebradoRadioValue, 
                                             <Typography sx={{ mt: 2, fontSize: "0.875rem" }} fontWeight="bold">
                                                 Celular <span style={{ color: "red" }}>*</span>
                                             </Typography>
-                                            <CustomTextField type="tel" placeholder="(__) _____-____" multiline={true} />
+                                            <CustomTextField
+                                                type="number"
+                                                fullWidth
+                                                placeholder="(__) _____-____"
+                                            />
                                             <Typography color="textDisabled" sx={{ fontSize: "0.7rem" }}>
                                                 Preencher corretamente para<br></br> entrarmos em contato se necessário.
                                             </Typography>
@@ -216,7 +220,7 @@ const CardMeuImovel = ({ setOpenModal, setOpenModalFios, subQuebradoRadioValue, 
                                     <Typography sx={{ mt: 2, fontSize: "0.875rem" }} fontWeight="bold">
                                         E-mail
                                     </Typography>
-                                    <CustomTextField type="email" multiline={true}>
+                                    <CustomTextField type="email" >
                                     </CustomTextField>
                                     <Typography sx={{ mt: 2, fontSize: "0.850rem" }}>
                                         <FormControlLabel
@@ -275,7 +279,11 @@ const CardMeuImovel = ({ setOpenModal, setOpenModalFios, subQuebradoRadioValue, 
                                             <Typography sx={{ mt: 2, fontSize: "0.875rem" }} fontWeight="bold">
                                                 Celular <span style={{ color: "red" }}>*</span>
                                             </Typography>
-                                            <CustomTextField type="tel" placeholder="(__) _____-____" multiline={true} />
+                                            <CustomTextField
+                                                type="number"
+                                                fullWidth
+                                                placeholder="(__) _____-____"
+                                            />
                                             <Typography color="textDisabled" sx={{ fontSize: "0.7rem" }}>
                                                 Preencher corretamente para<br></br> entrarmos em contato se necessário.
                                             </Typography>
