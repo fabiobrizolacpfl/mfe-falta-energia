@@ -47,8 +47,10 @@ function RelatarFaltaEnergiaPage({ steps, currentStep, nextStep, prevStep }) {
         (radioValue === "meuimovel" && subQuebradoRadioValue === "nao") ||
         (radioValue === "meuimovel" && quadRadioValue === "nao") ||
         (radioValue === "meuimovel" && subQuebradoRadioValue === "sim" && quadRadioValue === "sim") ||
+        (radioValue === "meuimovel" && subRadioValue === "nao" && thirdRadioValue === "sim" && quadRadioValue === "sim") ||
         (radioValue === "vizinhos" && quadRadioValue === "nao") ||
         (radioValue === "vizinhos" && quadRadioValue === "sim")
+
     );
 
     const renderContent = (value) => {
