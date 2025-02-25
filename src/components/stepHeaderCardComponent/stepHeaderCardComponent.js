@@ -11,7 +11,7 @@ const StepHeaderCardComponent = ({ steps, currentStep }) => {
     return (
         <Card className="header-steps" elevation={0}>
             <Grid container spacing={4} alignItems="center">
-                <Grid item sm={8}>
+                <Grid item sm={isLastStep ? 8 : 9}>
                     <Box display="flex" alignItems="center">
                         <div className="icon-bolt-slash">
                             <FlashOffIcon sx={{ fontSize: "20px" }} />
@@ -23,17 +23,18 @@ const StepHeaderCardComponent = ({ steps, currentStep }) => {
                 <Grid item sm={3}   >
                     <StepHeaderComponent steps={steps} activeStep={currentStep} />
                 </Grid>
-                <Grid item sm={1}>
-                    {isLastStep && (
+                {isLastStep && (
+                    <Grid item sm={1}>
+
                         <Box display="flex" alignItems="center">
                             <CheckCircleIcon sx={{ fontSize: "27px", color: "green" }} />
                         </Box>
-                    )}
-                </Grid>
+
+                    </Grid>
+                )}
             </Grid>
         </Card>
     );
-
 };
 
 export default StepHeaderCardComponent;
