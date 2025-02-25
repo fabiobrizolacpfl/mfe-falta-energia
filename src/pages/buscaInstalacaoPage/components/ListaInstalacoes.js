@@ -28,7 +28,7 @@ const ListaInstalacoes = ({ instalacoes, selectedInstalacao, onSelectInstalacao 
                             <RadioGroup
                                 aria-labelledby="demo-radio-buttons-group-label"
                                 value={selectedInstalacao ? selectedInstalacao.codigo : ''} // Usando selectedInstalacao da prop
-                                onChange={(e) => 
+                                onChange={(e) =>
                                     onSelectInstalacao(instalacoes.find(inst => inst.codigo === e.target.value)) // Apenas altera o estado
                                 }
                             >
@@ -37,7 +37,7 @@ const ListaInstalacoes = ({ instalacoes, selectedInstalacao, onSelectInstalacao 
                                         <FormControlLabel
                                             value={instalacao.codigo}
                                             control={<Radio />}
-                                            sx={{ marginRight: 2, marginBottom: 10,}}
+                                            sx={{ marginRight: 2, marginBottom: 10, }}
                                         />
                                         <Card variant="outlined" className="falta-energia-card">
                                             <CardContent sx={{ bgcolor: "var(--light-gray-bg)", width: 800 }}>

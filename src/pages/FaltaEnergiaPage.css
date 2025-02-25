@@ -306,7 +306,8 @@
 }
 
 .custom-label:hover {
-  background: #d0e4f7;
+  background: #0058a0;
+  color: white;
 }
 
 .custom-label.selected {
@@ -329,6 +330,31 @@
     align-items: center;
     gap: 20px;
 }
+
+.title-protocolo {
+    font-size: 20px;
+    display: flex;
+    margin-bottom: 10px;
+    justify-content: center;
+}
+
+.container-image-protocolo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 266px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-top: 40px;
+}
+
+.text-protocolo {
+    display: flex;
+    justify-content: center;
+}
+   
 
 
 
