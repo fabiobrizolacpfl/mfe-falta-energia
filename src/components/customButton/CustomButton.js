@@ -7,6 +7,7 @@ const CustomButton = ({
                           endIcon = null,
                           startIcon = null,
                           variant = null,
+                          height = null,
                       }) => {
 
     const defaultStyle = {
@@ -49,7 +50,10 @@ const CustomButton = ({
 
     return (
         <Button
-            sx={styleButton}
+            sx={{ 
+                ...styleButton, 
+                height: height || 'auto',  // Se altura for passada, aplica, senão usa 'auto'
+            }}
             onClick={onClick}
             disabled={disabled}
             startIcon={startIcon}
