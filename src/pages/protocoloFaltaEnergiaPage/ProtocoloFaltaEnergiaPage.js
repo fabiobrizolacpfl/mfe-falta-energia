@@ -9,7 +9,6 @@ import StepHeaderCardComponent from "../../components/stepHeaderCardComponent/st
 import CustomButton from "../../components/customButton/CustomButton";
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import CardProtocolo from "./components/CardProtocolo";
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 
 

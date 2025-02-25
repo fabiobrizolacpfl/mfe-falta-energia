@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import { useState, useEffect } from "react";
 import { Typography } from "@mui/material";
-import { FormControl, FormControlLabel, FormLabel, Grid, Radio, RadioGroup } from "@mui/material";
+import { FormControl, FormControlLabel, Grid, Radio, RadioGroup } from "@mui/material";
 import StepHeaderCardComponent from "../../components/stepHeaderCardComponent/stepHeaderCardComponent";
 import CardMeuImovel from "./components/CardMeuImovel";
 import CardVizinho from "./components/CardVizinho";
@@ -43,18 +43,18 @@ function RelatarFaltaEnergiaPage({ steps, currentStep, nextStep, prevStep }) {
     const isAvancarDisabled = !(
         radioValue === "poste" ||
         (radioValue === "meuimovel" && subRadioValue === "nao" && thirdRadioValue === "nao") ||
-        (radioValue === "meuimovel" && subRadioValue === "sim") || 
+        (radioValue === "meuimovel" && subRadioValue === "sim") ||
         (radioValue === "meuimovel" && subQuebradoRadioValue === "nao") ||
         (radioValue === "meuimovel" && quadRadioValue === "nao") ||
         (radioValue === "meuimovel" && subQuebradoRadioValue === "sim" && quadRadioValue === "sim") ||
         (radioValue === "vizinhos" && quadRadioValue === "nao") ||
         (radioValue === "vizinhos" && quadRadioValue === "sim")
-    );  
-    
+    );
+
     const renderContent = (value) => {
         switch (value) {
             case 'meuimovel':
-                return <CardMeuImovel setOpenModalFios={setOpenModalFios} setOpenModal={setOpenModal} subQuebradoRadioValue={subQuebradoRadioValue} setSubQuebradoRadioValue ={setSubQuebradoRadioValue} quadRadioValue={quadRadioValue} setQuadRadioValue={setQuadRadioValue} subRadioValue={subRadioValue} thirdRadioValue={thirdRadioValue} setSubRadioValue={setSubRadioValue} setThirdRadioValue={setThirdRadioValue} />
+                return <CardMeuImovel setOpenModalFios={setOpenModalFios} setOpenModal={setOpenModal} subQuebradoRadioValue={subQuebradoRadioValue} setSubQuebradoRadioValue={setSubQuebradoRadioValue} quadRadioValue={quadRadioValue} setQuadRadioValue={setQuadRadioValue} subRadioValue={subRadioValue} thirdRadioValue={thirdRadioValue} setSubRadioValue={setSubRadioValue} setThirdRadioValue={setThirdRadioValue} />
             case 'vizinhos':
                 return <CardVizinho quadRadioValue={quadRadioValue} setQuadRadioValue={setQuadRadioValue} />;
             case 'poste':
@@ -111,8 +111,8 @@ function RelatarFaltaEnergiaPage({ steps, currentStep, nextStep, prevStep }) {
                 isChecked={isChecked}
                 setIsChecked={setIsChecked}
             />
-            <ModalFios open={openModalFios} 
-            setOpenModal={setOpenModalFios}
+            <ModalFios open={openModalFios}
+                setOpenModal={setOpenModalFios}
                 setIsCheckedFios={setIsCheckedFios}
                 isCheckedFios={isCheckedFios} />
 
