@@ -9,6 +9,8 @@ import StepHeaderCardComponent from "../../components/stepHeaderCardComponent/st
 import CustomButton from "../../components/customButton/CustomButton";
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import CardProtocolo from "./components/CardProtocolo";
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+
 
 
 
@@ -35,6 +37,10 @@ function ProtocoloFaltaEnergiaPage({ steps, currentStep, prevStep }) {
                 <Box className="header-title">
                     FALTA DE ENERGIA - PROTOCOLO
                 </Box>
+                <StepHeaderCardComponent
+                    steps={steps}
+                    currentStep={currentStep}
+                />
                 <StepHeaderCardComponent
                     steps={steps}
                     currentStep={currentStep}
