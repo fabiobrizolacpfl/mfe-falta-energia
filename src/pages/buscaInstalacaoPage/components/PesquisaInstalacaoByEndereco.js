@@ -1,11 +1,11 @@
 import Box from "@mui/material/Box";
-import {Checkbox, FormControl, FormControlLabel, Grid, InputLabel, MenuItem, Select} from "@mui/material";
+import { Checkbox, FormControl, FormControlLabel, Grid, MenuItem, Select } from "@mui/material";
 import CustomButton from "../../../components/customButton/CustomButton";
 import * as React from "react";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import CustomTextField from "../../../components/customTextField/CustomTextField";
 
-const PesquisaInstalacaoByEndereco = ({setIstalacoes}) =>{
+const PesquisaInstalacaoByEndereco = ({ setIstalacoes }) => {
 
     const formDataJson = {
         cep: "",
@@ -19,16 +19,16 @@ const PesquisaInstalacaoByEndereco = ({setIstalacoes}) =>{
 
     //region mock
     const response_estados = [
-        {"MG": "MINAS GERAIS"},
-        {"PR": "PARANA"},
-        {"RS": "RIO GRANDE DO SUL"},
-        {"SP": "SAO PAULO"}
+        { "MG": "MINAS GERAIS" },
+        { "PR": "PARANA" },
+        { "RS": "RIO GRANDE DO SUL" },
+        { "SP": "SAO PAULO" }
     ];
 
     const response_cidades = [
-        {"codigo": 3104106, "nome": "ARCEBURGO", "nomeAbreviado": "ARCEBURGO", "uf": "MG"},
-        {"codigo": 3132909, "nome": "ITAMOGI", "nomeAbreviado": "ITAMOGI", "uf": "MG"},
-        {"codigo": 3143203, "nome": "MONTE SANTO DE MINAS", "nomeAbreviado": "MONTE S D MINAS", "uf": "MG"}
+        { "codigo": 3104106, "nome": "ARCEBURGO", "nomeAbreviado": "ARCEBURGO", "uf": "MG" },
+        { "codigo": 3132909, "nome": "ITAMOGI", "nomeAbreviado": "ITAMOGI", "uf": "MG" },
+        { "codigo": 3143203, "nome": "MONTE SANTO DE MINAS", "nomeAbreviado": "MONTE S D MINAS", "uf": "MG" }
     ];
     //endregion
 
@@ -46,7 +46,7 @@ const PesquisaInstalacaoByEndereco = ({setIstalacoes}) =>{
     const handleChangeCheckBoxNumEndereco = (event) => {
         const newChecked = event.target.checked;
 
-        if(newChecked){
+        if (newChecked) {
             document.getElementById('id-check-box-numero-endereco').value = null;
         }
         setCheckBoxNumEndereco(newChecked);
@@ -56,28 +56,28 @@ const PesquisaInstalacaoByEndereco = ({setIstalacoes}) =>{
         setIstalacoes([]);
     }
 
-    const handleButtonFieldText = () =>{
+    const handleButtonFieldText = () => {
         setFormData(formDataJson)
         serPesquisarPor(isPesquisaPorCEP ? "Não sei meu CEP" : "Pesquisar pelo CEP");
     }
 
-    const buscaCidadesDoEstado = (event) =>{
+    const buscaCidadesDoEstado = (event) => {
         const estadoSelecionado = event.target.value;
-        setFormData({...formData, estado: estadoSelecionado})
+        setFormData({ ...formData, estado: estadoSelecionado })
         //TODO BUSCA CIDADES DO ESTADO
         //axios.get(urlBase + estadoSelecionado)
         setCidades(response_cidades);
     }
 
-    const buscaEndereco = (event) =>{
+    const buscaEndereco = (event) => {
         const cidadeSelecionada = event.target.value;
-        setFormData({...formData, cidade: cidadeSelecionada})
+        setFormData({ ...formData, cidade: cidadeSelecionada })
     }
 
 
     const buscaEnderecoPorCEP = (event) => {
         const cep = event.target.value;
-        setFormData({...formData, cep: cep})
+        setFormData({ ...formData, cep: cep })
         // const cep = event.target.value;
         // const endereco = buscarEnderecoCep(cep, TRUE);
         // setFormData({
@@ -99,7 +99,7 @@ const PesquisaInstalacaoByEndereco = ({setIstalacoes}) =>{
                 onChange={buscaEnderecoPorCEP}
                 value={formData.cep}
                 disabled={!isPesquisaPorCEP}
-                inputProps={{maxlength: 9}}
+                inputProps={{ maxlength: 9 }}
             />
 
             <Grid container spacing={4}>
@@ -173,7 +173,7 @@ const PesquisaInstalacaoByEndereco = ({setIstalacoes}) =>{
             </Grid>
 
             <Box display="flex" justifyContent="flex-end" sx={{ mt: 3 }}>
-                <CustomButton label="Buscar"/>
+                <CustomButton label="Buscar" />
             </Box>
         </Box>
     );
