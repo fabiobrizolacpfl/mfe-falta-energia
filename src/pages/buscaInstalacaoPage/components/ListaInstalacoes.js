@@ -27,9 +27,9 @@ const ListaInstalacoes = ({ instalacoes, selectedInstalacao, onSelectInstalacao 
                         <FormControl>
                             <RadioGroup
                                 aria-labelledby="demo-radio-buttons-group-label"
-                                value={selectedInstalacao ? selectedInstalacao.codigo : ''} // Usando selectedInstalacao da prop
+                                value={selectedInstalacao ? selectedInstalacao.codigo : ''}
                                 onChange={(e) =>
-                                    onSelectInstalacao(instalacoes.find(inst => inst.codigo === e.target.value)) // Apenas altera o estado
+                                    onSelectInstalacao(instalacoes.find(inst => inst.codigo === e.target.value))
                                 }
                             >
                                 {instalacoes.map((instalacao) => (
