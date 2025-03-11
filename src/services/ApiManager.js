@@ -2,6 +2,11 @@ class ApiManager {
 
     constructor() {
         this.baseUrl = "http://localhost:3333/api";
+        this.onLoadingChange = null;
+    }
+
+    setLoadingCallback(callback) {
+        this.onLoadingChange = callback;
     }
 
     async buscarEstados(apenasAreaConcessao = true) {
@@ -68,6 +73,9 @@ class ApiManager {
 
 
     async doRequest(endpoint = "", method = "GET", body = null) {
+
+        if (this.onLoadingChange) this.onLoadingChange(true);
+
         const options = {
             method,
             headers: {
@@ -89,6 +97,9 @@ class ApiManager {
             return await response.json();
         } catch (error) {
             throw error;
+        }
+        finally {
+            if (this.onLoadingChange) this.onLoadingChange(false);
         }
     }
 }
