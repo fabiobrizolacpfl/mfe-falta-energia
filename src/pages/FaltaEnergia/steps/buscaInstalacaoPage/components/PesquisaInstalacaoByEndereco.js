@@ -6,7 +6,7 @@ import {useEffect, useState} from "react";
 import CustomTextField from "../../../../../components/customTextField/CustomTextField";
 import apiManager from "../../../../../services/ApiManager";
 
-const PesquisaInstalacaoByEndereco = ({setIstalacoes}) => {
+const PesquisaInstalacaoByEndereco = ({setIstalacoes, currentPage}) => {
 
     const [requestParams, setRequestParams] = useState({
         codigoMunicipio: '',
@@ -16,7 +16,6 @@ const PesquisaInstalacaoByEndereco = ({setIstalacoes}) => {
         numero: '',
         tipoComplemento: '',
         complemento: '',
-        page: 1,
         religacao: false,
         statusInstalacao: ''
     });
@@ -34,7 +33,6 @@ const PesquisaInstalacaoByEndereco = ({setIstalacoes}) => {
 
     const [estados, setEstados] = useState([]);
     const [cidades, setCidades] = useState([]);
-    const [enderecos, setEnderecos] = useState([]);
 
     const [pesquisarPor, serPesquisarPor] = useState('Pesquisar pelo CEP');
 
@@ -96,7 +94,6 @@ const PesquisaInstalacaoByEndereco = ({setIstalacoes}) => {
         } else {
 
             //CEP CONTEM APÉNAS UM ENDEREÇO
-
             const endereco = enderecos[0];
 
             setRequestParams({
@@ -126,13 +123,22 @@ const PesquisaInstalacaoByEndereco = ({setIstalacoes}) => {
             formData.checkBoxNumEndereco ? null : requestParams.numero,
             requestParams.tipoComplemento,
             requestParams.complemento,
-            "1",
+            currentPage,
             requestParams.religacao,
             requestParams.statusInstalacao
         );
 
-        setIstalacoes(data?.instalacoes);
+        setIstalacoes(data);
     }
+
+    useEffect(() => {
+        const fetchInstalcaoes = async () => {
+            if(currentPage !== 1){
+                await buscarInstalacaoPorEndereco();
+            }
+        }
+        fetchInstalcaoes();
+    }, [currentPage]);
 
     return (
         <Box>

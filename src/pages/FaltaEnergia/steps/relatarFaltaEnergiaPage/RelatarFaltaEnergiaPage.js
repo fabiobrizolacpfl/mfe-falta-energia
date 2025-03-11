@@ -6,13 +6,11 @@ import StepHeaderCardComponent from "../../../../components/stepHeaderCardCompon
 import CardMeuImovel from "./components/CardMeuImovel";
 import CardVizinho from "./components/CardVizinho";
 import ModalSteps from "./components/modalSteps";
-import CustomButton from "../../../../components/customButton/CustomButton";
-import EastIcon from '@mui/icons-material/East';
-import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import ModalFios from "./components/modalFios";
+import FooterButton from "../../../../components/footerButton/FooterButton";
+import * as React from "react";
 
 function RelatarFaltaEnergiaPage({ steps, currentStep, nextStep, prevStep }) {
-    const [instalacoes, setInstalacoes] = useState([]);
     const [radioValue, setRadioValue] = useState("");
     const [openModal, setOpenModal] = useState(false);
     const [openModalFios, setOpenModalFios] = useState(false);
@@ -47,9 +45,22 @@ function RelatarFaltaEnergiaPage({ steps, currentStep, nextStep, prevStep }) {
     const renderContent = (value) => {
         switch (value) {
             case 'meuimovel':
-                return <CardMeuImovel setOpenModalFios={setOpenModalFios} setOpenModal={setOpenModal} subQuebradoRadioValue={subQuebradoRadioValue} setSubQuebradoRadioValue={setSubQuebradoRadioValue} quadRadioValue={quadRadioValue} setQuadRadioValue={setQuadRadioValue} subRadioValue={subRadioValue} thirdRadioValue={thirdRadioValue} setSubRadioValue={setSubRadioValue} setThirdRadioValue={setThirdRadioValue} />
+                return <CardMeuImovel
+                    setOpenModalFios={setOpenModalFios}
+                    setOpenModal={setOpenModal}
+                    subQuebradoRadioValue={subQuebradoRadioValue}
+                    setSubQuebradoRadioValue={setSubQuebradoRadioValue}
+                    quadRadioValue={quadRadioValue}
+                    setQuadRadioValue={setQuadRadioValue}
+                    subRadioValue={subRadioValue}
+                    thirdRadioValue={thirdRadioValue}
+                    setSubRadioValue={setSubRadioValue}
+                    setThirdRadioValue={setThirdRadioValue}
+                />
             case 'vizinhos':
-                return <CardVizinho quadRadioValue={quadRadioValue} setQuadRadioValue={setQuadRadioValue} />;
+                return <CardVizinho
+                    quadRadioValue={quadRadioValue}
+                    setQuadRadioValue={setQuadRadioValue} />;
             case 'poste':
                 return
             default:
@@ -98,32 +109,24 @@ function RelatarFaltaEnergiaPage({ steps, currentStep, nextStep, prevStep }) {
             </Box>
 
             {renderContent(radioValue)}
+
             <ModalSteps
                 open={openModal}
                 setOpenModal={setOpenModal}
                 isChecked={isChecked}
                 setIsChecked={setIsChecked}
             />
+
             <ModalFios open={openModalFios}
                 setOpenModal={setOpenModalFios}
                 setIsCheckedFios={setIsCheckedFios}
                 isCheckedFios={isCheckedFios} />
 
-            <Box className="footer-form">
-                <CustomButton
-                    label="Voltar"
-                    startIcon={<KeyboardBackspaceIcon />}
-                    onClick={prevStep}
-                />
-
-                <CustomButton
-                    label="Avançar"
-                    endIcon={<EastIcon />}
-                    disabled={isAvancarDisabled}
-                    onClick={nextStep}
-                />
-
-            </Box>
+            <FooterButton
+                onClickPrev={prevStep}
+                onClickNext={nextStep}
+                disabledNext={isAvancarDisabled}
+            />
 
         </Box>
     );

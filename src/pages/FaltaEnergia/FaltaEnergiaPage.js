@@ -6,7 +6,6 @@ import IntroFaltaEnergiaPage from "./steps/introFaltaEnergiaPage/IntroFaltaEnerg
 import BuscaInstalacaoPage from "./steps/buscaInstalacaoPage/BuscaInstalacaoPage";
 import RelatarFaltaEnergiaPage from './steps/relatarFaltaEnergiaPage/RelatarFaltaEnergiaPage';
 import ProtocoloPage from './steps/protocoloFaltaEnergiaPage/ProtocoloPage';
-import {CircularProgress} from "@mui/material";
 import Loader from "../../components/loader/Loader";
 import apiManager from "../../services/ApiManager";
 

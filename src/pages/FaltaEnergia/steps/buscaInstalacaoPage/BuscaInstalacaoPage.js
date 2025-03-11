@@ -2,34 +2,34 @@ import Box from "@mui/material/Box";
 import * as React from "react";
 import {useState} from "react";
 import StepHeaderCardComponent from "../../../../components/stepHeaderCardComponent/stepHeaderCardComponent";
-import {FormControl, FormControlLabel, FormLabel, Grid, Radio, RadioGroup, Typography} from "@mui/material";
-import CustomButton from "../../../../components/customButton/CustomButton";
-import EastIcon from '@mui/icons-material/East';
-import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+import {FormControl, FormControlLabel, FormLabel, Grid, Radio, RadioGroup} from "@mui/material";
 import PesquisaInstalacaoByEndereco from "./components/PesquisaInstalacaoByEndereco";
 import PesquisaInstalacaoByCodInstalacao from "./components/PesquisaInstalacaoByCodInstalacao";
 import PesquisaInstalacaoByNrMedidor from "./components/PesquisaInstalacaoByNrMedidor";
-import ListaInstalacoes from "./components/ListaInstalacoes";
-import InfoModal from "../../../../components/infoModal/InfoModal";
-import {useUser} from "../../../../context/UserContext";
+import ListaInstalacoes from "./components/ListaInstalacoes/ListaInstalacoes";
+import FooterButton from "../../../../components/footerButton/FooterButton";
+import InfoEnderecoInstalacaoModal from "./components/InfoEnderecoInstalacaoModal";
 
 function BuscaInstalacaoPage({steps, currentStep, nextStep, prevStep}) {
 
-    const {userData, setUserData} = useUser();
+    const [instalacao, setInstalacao] = useState(null);
+
+    const dontShowAgainPageIntro = JSON.parse(localStorage.getItem('checkboxStatePageIntro')) ?? false;
+
+    const [currentPage, setCurrentPage] = useState(1);
 
     const [openModal, setOpenModal] = useState(false);
 
     const [instalacoes, setInstalacoes] = useState();
-    const [radioValue, setRadioValue] = useState('instalacao');
 
-    const dontShowAgainPageIntro = JSON.parse(localStorage.getItem('checkboxStatePageIntro')) ?? false;
+    const [radioValue, setRadioValue] = useState('instalacao');
 
     const renderContent = (value) => {
         switch (value) {
             case 'instalacao':
                 return <PesquisaInstalacaoByCodInstalacao setInstalacoes={setInstalacoes}/>;
             case 'endereco':
-                return <PesquisaInstalacaoByEndereco setIstalacoes={setInstalacoes}/>;
+                return <PesquisaInstalacaoByEndereco setIstalacoes={setInstalacoes} currentPage={currentPage}/>;
             case 'medidor':
                 return <PesquisaInstalacaoByNrMedidor setInstalacoes={setInstalacoes}/>;
             default:
@@ -37,109 +37,84 @@ function BuscaInstalacaoPage({steps, currentStep, nextStep, prevStep}) {
         }
     };
 
-    const handleAvancar = () => {
-        if (userData.instalacaoSelecionada) {
-            setOpenModal(true);
-        }
-    };
-
     const handleCloseModal = () => {
         setOpenModal(false);
     };
 
+    function SelecaoTipoPesquisaInstalacao({ radioValue, setRadioValue }) {
+        return (
+            <FormControl>
+                <FormLabel>Como deseja pesquisar pela instalação?</FormLabel>
+                <RadioGroup value={radioValue} onChange={(e) => {setRadioValue(e.target.value); setCurrentPage(1)}}>
+                    <FormControlLabel value="instalacao" control={<Radio />} label="Código da instalação" />
+                    <FormControlLabel value="endereco" control={<Radio />} label="Endereço do imóvel" />
+                    <FormControlLabel value="medidor" control={<Radio />} label="Número do medidor" />
+                </RadioGroup>
+            </FormControl>
+        );
+    }
+
     return (
         <>
             <Box className="falta-energia-container">
+
                 <Box className="header-title">
                     FALTA DE ENERGIA - INFORMAR ENDEREÇO!
                 </Box>
+
                 <StepHeaderCardComponent
                     steps={steps}
                     currentStep={currentStep}
                 />
+
                 <Box className="intro-text">
                     <h2>Vamos selecionar a sua instalação</h2>
                     <span>Para encontrar o seu imóvel você pode utilizar o seu código de instalação, o endereço do local ou o número do medidor instalado.</span>
                 </Box>
+
                 <Box sx={{mt: 3}}>
                     <Grid container spacing={5}>
+
                         <Grid item md={5}>
                             <Box className="falta-energia-container">
-                                <FormControl>
-                                    <FormLabel>Como deseja pesquisar pela instalação?</FormLabel>
-                                    <RadioGroup
-                                        value={radioValue}
-                                        onChange={(e) => setRadioValue(e.target.value)}
-                                    >
-                                        <FormControlLabel value="instalacao" control={<Radio/>} label="Código da instalação"/>
-                                        <FormControlLabel value="endereco" control={<Radio/>} label="Endereço do imóvel"/>
-                                        <FormControlLabel value="medidor" control={<Radio/>} label="Número do medidor"/>
-                                    </RadioGroup>
-                                </FormControl>
+                                <SelecaoTipoPesquisaInstalacao
+                                    radioValue={radioValue}
+                                    setRadioValue={setRadioValue}
+                                />
                             </Box>
                         </Grid>
+
                         <Grid item md={7}>
                             <Box className="falta-energia-container">
                                 {renderContent(radioValue)}
                             </Box>
                         </Grid>
+
                     </Grid>
                 </Box>
 
-                {instalacoes &&
-                    <ListaInstalacoes
-                        instalacoes={instalacoes}
-                        selectedInstalacao={userData.instalacaoSelecionada}
-                        onSelectInstalacao={(selectedInstalacao) => setUserData({
-                            ...userData,
-                            instalacaoSelecionada: selectedInstalacao
-                        })}
-                    />
-                }
+                <ListaInstalacoes
+                    instalacoes={instalacoes}
+                    setInstalacao={setInstalacao}
+                    instalacao={instalacao}
+                    setCurrentPage={setCurrentPage}
+                    currentPage={currentPage}
+                />
 
-                <Box className="footer-form">
-                    <CustomButton
-                        label="Voltar"
-                        startIcon={<KeyboardBackspaceIcon/>}
-                        onClick={prevStep}
-                        disabled={dontShowAgainPageIntro}
-                    />
-                    <CustomButton label="Avançar" disabled={!userData.instalacaoSelecionada} endIcon={<EastIcon/>} onClick={handleAvancar}/>
-                </Box>
+                <InfoEnderecoInstalacaoModal
+                    openModal={openModal}
+                    handleCloseModal={handleCloseModal}
+                    instalacao={instalacao}
+                    nextStep={nextStep}
+                />
 
-                {userData.instalacaoSelecionada && (
-                    <InfoModal
-                        open={openModal}
-                        onClose={handleCloseModal}
-                        content={
-                            <Box width={730} height={325}>
+                <FooterButton
+                    onClickPrev={prevStep}
+                    disabledPrev={dontShowAgainPageIntro}
+                    onClickNext={() => setOpenModal(true)}
+                    disabledNext={!instalacao}
+                />
 
-                                <Typography fontWeight="bold" variant="h6">
-                                    O relato de falta de energia será no endereço informado abaixo:
-                                </Typography>
-
-                                <Typography sx={{mt: 2, fontSize: '0.875rem'}}>
-                                    <strong>CEP:</strong> {userData.instalacaoSelecionada.cep} <br/>
-                                    <strong>Endereço:</strong> {userData.instalacaoSelecionada.logradouro}, {userData.instalacaoSelecionada.numeroResidencia}, {userData.instalacaoSelecionada.bairro} <br/>
-                                    <strong>Complemento:</strong> {userData.instalacaoSelecionada.cidade} - {userData.instalacaoSelecionada.estado} <br/>
-                                    <strong>Cidade:</strong> {userData.instalacaoSelecionada.cidade} - {userData.instalacaoSelecionada.estado}
-                                </Typography>
-
-                                <Typography sx={{mt: 2, fontSize: '0.875rem'}}>
-                                    <b className="danger-text">ATENÇÃO:</b> Confirme se o endereço está correto para que
-                                    nossa equipe tenha maior precisão ao se deslocar para o local informado.
-                                </Typography>
-
-                                <Box sx={{mt: 9, display: "flex", justifyContent: "space-evenly"}}>
-                                    <CustomButton label="Revisar Endereço" onClick={handleCloseModal} variant="outlined"/>
-                                    <CustomButton label="Confirmar Endereço" onClick={() => {nextStep();handleCloseModal();
-                                    }}/>
-                                </Box>
-
-                            </Box>
-                        }
-                    />
-                )}
             </Box>
         </>
     );

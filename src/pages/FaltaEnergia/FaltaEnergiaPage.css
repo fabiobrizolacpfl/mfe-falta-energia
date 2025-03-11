@@ -241,6 +241,12 @@
     height: 100px !important;  
 }
 
+.falta-energia-container.pagination{
+    background-color: #fdfdfd;
+    max-width: 95%;
+    padding: 10px;
+}
+
 .falta-energia-cardMeuImovel {
     width: 940px;
     border: 1px solid var(--border-color);

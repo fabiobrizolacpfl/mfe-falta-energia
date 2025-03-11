@@ -377,7 +377,6 @@ const CardMeuImovel = ({ setOpenModal, setOpenModalFios, subQuebradoRadioValue, 
             {renderThirdContent(thirdRadioValue)}
             {renderThirdContent(subQuebradoRadioValue)}
             {renderQuadContent(quadRadioValue)}
-            { }
         </Box>
     );
 };
