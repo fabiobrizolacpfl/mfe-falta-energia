@@ -1,8 +1,9 @@
 import Box from "@mui/material/Box";
-import CustomButton from "../../../components/customButton/CustomButton";
+import CustomButton from "../../../../../components/customButton/CustomButton";
 import {TextField} from "@mui/material";
 import {useState} from "react";
-import InfoModal from "../../../components/infoModal/InfoModal";
+import InfoModal from "../../../../../components/infoModal/InfoModal";
+import ApiManager from "../../../../../services/ApiManager";
 
 const PesquisaInstalacaoByNrMedidor = ({setInstalacoes}) => {
 
@@ -19,21 +20,15 @@ const PesquisaInstalacaoByNrMedidor = ({setInstalacoes}) => {
         setImageSrc('/images/modal-num-medidor-middle.png');
     };
 
-    const handleChangeNumeroMedidor = (event) => {
-        setNumeroMedidor(event.target.value);
-    };
-
-    const fetchInstalacoes = () => {
-        setInstalacoes([]);
+    const fetchInstalacoes = async () => {
+        try {
+            const data = await ApiManager.buscarInstalacaoPorNumeroMedidor(numeroMedidor);
+            setInstalacoes(data?.instalacoes);
+        } catch (error) {
+            //TODO TRATAR RETORNO ERROR QUANDO "A instalação não pode ser encontrada"
+            setInstalacoes([]);
+        }
     }
-
-    const handleOpenModal = () => {
-        setOpenModal(true);
-    };
-
-    const handleCloseModal = () => {
-        setOpenModal(false);
-    };
 
     const modalContent = (
         <Box>
@@ -60,29 +55,29 @@ const PesquisaInstalacaoByNrMedidor = ({setInstalacoes}) => {
                 <img src="/images/modal-num-medidor-bottom.png"/>
             </Box>
 
-             
-
         </Box>
     );
 
     return (
         <Box>
+
             <Box display="flex" justifyContent="space-between">
                 <div>Insira aqui o número do medidor</div>
-                <a href="#" onClick={handleOpenModal}>Onde encontro meu nº do medidor?</a>
+                <a href="#" onClick={() => setOpenModal(true)}>Onde encontro meu nº do medidor?</a>
             </Box>
+
             <TextField
                 sx={{mt: 1, mb: 2}}
                 type="number"
                 value={numeroMedidor}
-                onChange={handleChangeNumeroMedidor}
+                onChange={(e) => setNumeroMedidor(e.target.value)}
                 fullWidth/>
 
             <Box display="flex" justifyContent="end">
                 <CustomButton label="Buscar" disabled={!numeroMedidor} onClick={fetchInstalacoes}/>
             </Box>
 
-            <InfoModal open={openModal} onClose={handleCloseModal} content={modalContent} title="Onde encontro o nº do medidor?"/>
+            <InfoModal open={openModal} onClose={() => setOpenModal(false)} content={modalContent} title="Onde encontro o nº do medidor?"/>
 
         </Box>
     );

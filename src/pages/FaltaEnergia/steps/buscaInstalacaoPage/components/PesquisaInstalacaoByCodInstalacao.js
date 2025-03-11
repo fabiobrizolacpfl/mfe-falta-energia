@@ -1,36 +1,27 @@
-import CustomButton from "../../../components/customButton/CustomButton";
+import CustomButton from "../../../../../components/customButton/CustomButton";
 import Box from "@mui/material/Box";
 import {TextField} from "@mui/material";
 import {useState} from "react";
-import InfoModal from "../../../components/infoModal/InfoModal";
+import InfoModal from "../../../../../components/infoModal/InfoModal";
+import apiManager from "../../../../../services/ApiManager"
 
-const PesquisaInstalacaoByCodInstalacao = ({setIstalacoes}) => {
+const PesquisaInstalacaoByCodInstalacao = ({setInstalacoes}) => {
 
     const [openModal, setOpenModal] = useState(false);
     const [codInstalacao, setCodInstalacao] = useState(null);
 
-    const handleChangeCodInstalacao = (event) => {
-        setCodInstalacao(event.target.value);
+    const fetchInstalacoes = async () => {
+        const response = await apiManager.buscarInstalacaoPorCodigo(codInstalacao);
+        setInstalacoes(response?.instalacoes || []);
     };
 
-    const fetchInstalacoes = () => {
-        setIstalacoes([]);
-    }
-
-    const handleOpenModal = () => {
-        setOpenModal(true);
-    };
-
-    const handleCloseModal = () => {
-        setOpenModal(false);
-    };
+    const handleCloseModal = () => setOpenModal(false);
 
     const modalContent = (
             <Box>
                 <Box display="flex" flexDirection="column" alignItems="center">
                     <h4>NOVA CONTA</h4>
-                    <img
-                        src="/images/modal-codigo-instalacao-top.png"/>
+                    <img src="/images/modal-codigo-instalacao-top.png"/>
                 </Box>
                 <Box display="flex" flexDirection="column" alignItems="center">
                     <Box>
@@ -48,18 +39,18 @@ const PesquisaInstalacaoByCodInstalacao = ({setIstalacoes}) => {
         <Box>
             <Box display="flex" justifyContent="space-between">
                 <div>Insira aqui o código da instalação</div>
-                <a href="#" onClick={handleOpenModal}>Onde encontro meu código?</a>
+                <a href="#" onClick={() => setOpenModal(true)}>Onde encontro meu código?</a>
             </Box>
             <TextField
                 sx={{mt: 1, mb: 2}}
                 type="number"
                 value={codInstalacao}
-                onChange={handleChangeCodInstalacao}
                 fullWidth
+                onChange={(e) => setCodInstalacao(e.target.value)}
             />
 
             <Box display="flex" justifyContent="end">
-                <CustomButton label="Buscar" disabled={!codInstalacao}/>
+                <CustomButton label="Buscar" disabled={!codInstalacao} onClick={fetchInstalacoes}/>
             </Box>
 
             <InfoModal open={openModal} onClose={handleCloseModal} content={modalContent} title="Onde encontro meu código da instalação?"/>

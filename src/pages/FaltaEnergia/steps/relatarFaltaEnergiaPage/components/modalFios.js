@@ -1,6 +1,6 @@
 import { Typography, FormControlLabel, Checkbox, Box, Grid, FormControl } from "@mui/material";
-import CustomButton from "../../../components/customButton/CustomButton";
-import InfoModal from "../../../components/infoModal/InfoModal";
+import CustomButton from "../../../../../components/customButton/CustomButton";
+import InfoModal from "../../../../../components/infoModal/InfoModal";
 import { useEffect } from "react";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 

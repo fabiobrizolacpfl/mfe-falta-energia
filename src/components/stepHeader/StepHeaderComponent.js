@@ -38,8 +38,8 @@ export default function StepHeaderComponent({activeStep = 0, steps}) {
                     '& .MuiStepConnector-line': {
                         borderTopWidth: 5,
                         position: 'absolute',
-                        left: '-10px',
-                        width: '250%',
+                        left: '-9px',
+                        width: '255%',
                         borderTopColor: 'var(--header-steps)'
                     },
                     "& .MuiStepConnector-root.Mui-active .MuiStepConnector-line": {

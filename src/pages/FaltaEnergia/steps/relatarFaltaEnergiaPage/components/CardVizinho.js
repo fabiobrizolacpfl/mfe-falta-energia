@@ -9,7 +9,7 @@ import {
     Checkbox
 } from "@mui/material";
 import { useState } from "react";
-import CustomTextField from "../../../components/customTextField/CustomTextField";
+import CustomTextField from "../../../../../components/customTextField/CustomTextField";
 import SeletorProblema from "./SeletorProblema";
 
 const CardVizinho = ({ quadRadioValue, setQuadRadioValue }) => {

@@ -1,6 +1,6 @@
 import { Typography, FormControlLabel, Checkbox, Box } from "@mui/material";
-import CustomButton from "../../../components/customButton/CustomButton";
-import InfoModal from "../../../components/infoModal/InfoModal";
+import CustomButton from "../../../../../components/customButton/CustomButton";
+import InfoModal from "../../../../../components/infoModal/InfoModal";
 import { useState, useEffect } from "react";
 
 

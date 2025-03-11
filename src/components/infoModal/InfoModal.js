@@ -5,7 +5,6 @@ import Box from "@mui/material/Box";
 
 const InfoModal = ({ open, onClose, title, content, hideCloseButton = false }) => {
 
-
     return (
         <Dialog open={open} onClose={onClose} maxWidth slotProps={{ paper: { sx: { borderRadius: 4, p: 2 } } }}>
             <DialogTitle sx={{ display: "flex", justifyContent: "space-between", margin: 1 }}>

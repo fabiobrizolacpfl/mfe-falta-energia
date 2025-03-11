@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import FaltaEnergiaPage from './pages/FaltaEnergiaPage';
-import { UserProvider } from './context/UserContext'; // Corrigido de InstalacaoProvider para UserProvider
+import FaltaEnergiaPage from './pages/FaltaEnergia/FaltaEnergiaPage';
+import { UserProvider } from './context/UserContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
         <UserProvider> 
           <FaltaEnergiaPage />
         </UserProvider>
-  </React.StrictMode>
+  // </React.StrictMode>
 );

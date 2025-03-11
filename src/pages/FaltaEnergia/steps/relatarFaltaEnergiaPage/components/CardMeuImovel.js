@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
-import CustomButton from "../../../components/customButton/CustomButton";
+import CustomButton from "../../../../../components/customButton/CustomButton";
 import { Grid } from "@mui/material";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 import {
@@ -11,7 +11,7 @@ import {
     Checkbox
 } from "@mui/material";
 import { useState } from "react";
-import CustomTextField from "../../../components/customTextField/CustomTextField";
+import CustomTextField from "../../../../../components/customTextField/CustomTextField";
 import SeletorProblema from "./SeletorProblema";
 
 

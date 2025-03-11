@@ -2,21 +2,14 @@ import Box from "@mui/material/Box";
 import { useState, useEffect } from "react";
 import { Typography } from "@mui/material";
 import { FormControl, FormControlLabel, Grid, Radio, RadioGroup } from "@mui/material";
-import StepHeaderCardComponent from "../../components/stepHeaderCardComponent/stepHeaderCardComponent";
+import StepHeaderCardComponent from "../../../../components/stepHeaderCardComponent/stepHeaderCardComponent";
 import CardMeuImovel from "./components/CardMeuImovel";
 import CardVizinho from "./components/CardVizinho";
 import ModalSteps from "./components/modalSteps";
-import CustomButton from "../../components/customButton/CustomButton";
+import CustomButton from "../../../../components/customButton/CustomButton";
 import EastIcon from '@mui/icons-material/East';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import ModalFios from "./components/modalFios";
-
-
-
-
-
-
-
 
 function RelatarFaltaEnergiaPage({ steps, currentStep, nextStep, prevStep }) {
     const [instalacoes, setInstalacoes] = useState([]);
@@ -29,8 +22,6 @@ function RelatarFaltaEnergiaPage({ steps, currentStep, nextStep, prevStep }) {
     const [subQuebradoRadioValue, setSubQuebradoRadioValue] = useState("");
     const [thirdRadioValue, setThirdRadioValue] = useState("");
     const [quadRadioValue, setQuadRadioValue] = useState("");
-
-
 
     const handleChangeRadio = (event) => {
         setRadioValue(event.target.value);

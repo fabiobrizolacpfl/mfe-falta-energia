@@ -1,24 +1,21 @@
 import Box from "@mui/material/Box";
 import {Checkbox, FormControlLabel, Grid} from "@mui/material";
-import CustomButton from "../../components/customButton/CustomButton";
+import CustomButton from "../../../../components/customButton/CustomButton";
 import * as React from "react";
 import {useState} from "react";
 import OfflineBoltIcon from '@mui/icons-material/OfflineBolt';
 import LightbulbOutlinedIcon from '@mui/icons-material/LightbulbOutlined';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
-import StepHeaderCardComponent from "../../components/stepHeaderCardComponent/stepHeaderCardComponent";
+import StepHeaderCardComponent from "../../../../components/stepHeaderCardComponent/stepHeaderCardComponent";
 
-function IntroFaltaEnergiaPage({steps, currentStep, nextStep, prevStep}) {
+function IntroFaltaEnergiaPage({steps, currentStep, nextStep}) {
 
-    const [checked, setChecked] = useState(() => {
-        const storedValue = localStorage.getItem('checkboxStatePageIntro');
-        return storedValue ? JSON.parse(storedValue) : false;
-    });
+    const [checked, setChecked] = useState(false);
 
     const handleChangeCheckBoxPageIntro = (event) => {
         const newChecked = event.target.checked;
         setChecked(newChecked);
-        localStorage.setItem('checkboxStatePageIntro', JSON.stringify(newChecked));
+        localStorage.setItem('dontShowAgainPageIntro', JSON.stringify(newChecked));
     };
 
     return (

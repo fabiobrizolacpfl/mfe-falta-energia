@@ -1,21 +1,15 @@
 import Box from "@mui/material/Box";
-import {
-    Grid,
-    Typography
-} from "@mui/material";
+import {Grid, Typography} from "@mui/material";
 import * as React from "react";
-import { useState } from "react";
-import StepHeaderCardComponent from "../../components/stepHeaderCardComponent/stepHeaderCardComponent";
-import CustomButton from "../../components/customButton/CustomButton";
+import {useState} from "react";
+import StepHeaderCardComponent from "../../../../components/stepHeaderCardComponent/stepHeaderCardComponent";
+import CustomButton from "../../../../components/customButton/CustomButton";
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import CardProtocolo from "./components/CardProtocolo";
 
+function ProtocoloPage({steps, currentStep, prevStep}) {
 
-
-
-function ProtocoloFaltaEnergiaPage({ steps, currentStep, prevStep }) {
-
-    const [protocolo, setProtocolo] = useState("123456");//mockando o protocolo
+    const [protocolo, setProtocolo] = useState("123456");
 
     const dataHoraPrevisaoProtocolo = new Date().toLocaleString("pt-BR", {
         timeZone: "America/Sao_Paulo",
@@ -24,11 +18,7 @@ function ProtocoloFaltaEnergiaPage({ steps, currentStep, prevStep }) {
         day: "2-digit",
         hour: "2-digit",
         minute: "2-digit",
-    }); //mochando data do protocolo ja gerado 
-
-
-
-
+    });
 
     return (
         <>
@@ -51,9 +41,10 @@ function ProtocoloFaltaEnergiaPage({ steps, currentStep, prevStep }) {
                                 <Box fontWeight="bold" className="title-protocolo">
                                     Sua região está passando por Falta de Energia já identificada!
                                 </Box>
-                                <Box className="container-image-protocolo" sx={{ backgroundImage: "url(/images/falta-energia-protocol-identificada.png)", }}>
+                                <Box className="container-image-protocolo"
+                                     sx={{backgroundImage: "url(/images/falta-energia-protocol-identificada.png)",}}>
                                 </Box>
-                                <Box className="text-protocolo" textAlign={"center"} marginTop={4}>
+                                <Box className="text-protocolo" textAlign="center" marginTop={4}>
                                     Não se preocupe! Nossas equipes estão trabalhando para<br></br>
                                     resolver o problema o mais rápido possível.
                                 </Box>
@@ -79,7 +70,8 @@ function ProtocoloFaltaEnergiaPage({ steps, currentStep, prevStep }) {
                                 <Box fontWeight="bold" className="title-protocolo">
                                     Nossa equipe será acionada para resolver o problema o mais rápido possível!
                                 </Box>
-                                <Box className="container-image-protocolo" sx={{ backgroundImage: "url(/images/falta-energia-protocol-sucesso.png)", }}>
+                                <Box className="container-image-protocolo"
+                                     sx={{backgroundImage: "url(/images/falta-energia-protocol-sucesso.png)",}}>
                                 </Box>
                                 <Box className="text-protocolo" marginTop={4}>
                                     Nossa equipe percorrerá a região para restabelecer a energia o mais rápido possível!
@@ -87,9 +79,7 @@ function ProtocoloFaltaEnergiaPage({ steps, currentStep, prevStep }) {
                                 <Box className="text-protocolo" marginTop={3}>
                                     Assim que solucionado o problema estaremos restabelecendo a energia no local.
                                 </Box>
-                                <CardProtocolo protocolo={protocolo}>
-
-                                </CardProtocolo>
+                                <CardProtocolo protocolo={protocolo}/>
                             </Grid>
                         </Grid>
                     </Box>
@@ -97,7 +87,7 @@ function ProtocoloFaltaEnergiaPage({ steps, currentStep, prevStep }) {
                 <Box className="footer-form">
                     <CustomButton
                         label="Voltar"
-                        startIcon={<KeyboardBackspaceIcon />}
+                        startIcon={<KeyboardBackspaceIcon/>}
                         onClick={prevStep}
                     />
                 </Box>
@@ -107,4 +97,4 @@ function ProtocoloFaltaEnergiaPage({ steps, currentStep, prevStep }) {
     );
 }
 
-export default ProtocoloFaltaEnergiaPage;
+export default ProtocoloPage;

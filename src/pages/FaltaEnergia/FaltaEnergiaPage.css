@@ -167,27 +167,34 @@
     color: var(--light-blue);
 }
 
-.falta-energia-card {
-    width: 100%;
+.falta-energia-card-select-instalacao {
+    position: relative;
+    width: 800px;
+    background-color: var(--light-gray-bg);
 }
 
-.falta-energia-card .status {
+.falta-energia-card-select-instalacao .status {
     position: absolute;
-    top: 20px;
-    right: 12px;
-    padding: 8px 20px;
-    border-radius: 4px;
-    font-size: 12px;
-    font-weight: bold;
-    color: #fff;
+    top: 10px;
+    right: 10px;
+    padding: 7px 0;
+    border-radius: 3px;
+    color: var(--white);
+    text-align: center;
+    width: 66px;
+    font-size: 13px;
 }
 
-.falta-energia-card .status.ativa {
-    background: #3dc47e;
+.falta-energia-card-select-instalacao .status.ativa {
+    background-color: #3dc47e;
 }
 
-.falta-energia-card .status.desativada {
-    background: #e74c3c;
+.falta-energia-card-select-instalacao .status.inativa {
+    background-color: #e74c3c;
+}
+
+.falta-energia-card-select-instalacao .status.suspensa {
+    background-color: #717171;
 }
 
 .danger-text {
